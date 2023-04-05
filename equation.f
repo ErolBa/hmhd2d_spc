@@ -1,10 +1,10 @@
 #include"inc.h"
 
-!############################################################
-! Definitions for the m4 preprocessor
-!############################################################
+	!############################################################
+	! Definitions for the m4 preprocessor
+	!############################################################
 
-! Undefine intrinsic macros that conflict with f90
+	! Undefine intrinsic macros that conflict with f90
 
 undefine(`include')   ! include statements
 undefine(`len')       ! len defines length of character variables
@@ -12,7 +12,7 @@ undefine(`index')     ! dummy argument in sub set_fname
 undefine(`format')
 
 #if NONUNIFX==1
-! d/dx
+	! d/dx
 #  if FDTYPE==0
 define(`DDX', `($1(i-2,k)*px51(i,1)+$1(i-1,k)*px51(i,2) &
                 +$1(i,k)*px51(i,3)+$1(i+1,k)*px51(i,4) &
@@ -22,16 +22,16 @@ define(`DDX', `($1(i-2,k)*px51(i,1)+$1(i-1,k)*px51(i,2) &
                 +$1(i+1,k)*px51(i,4) &
                 +$1(i+2,k)*px51(i,5))')
 #  endif 
-!d^2/dx^2
+	!d^2/dx^2
 define(`D2DX', `($1(i-2,k)*px52(i,1)+$1(i-1,k)*px52(i,2) &
                  +$1(i  ,k)*px52(i,3)+$1(i+1,k)*px52(i,4) &
                  +$1(i+2,k)*px52(i,5))')
 #else
-! d/dx
+	! d/dx
 define(`DDX', `($1(i-2,k)*px51u(1)+$1(i-1,k)*px51u(2) &
                 +$1(i+1,k)*px51u(4) &
                 +$1(i+2,k)*px51u(5))')
-!d^2/dx^2
+	!d^2/dx^2
 define(`D2DX', `($1(i-2,k)*px52u(1)+$1(i-1,k)*px52u(2) &
                  +$1(i  ,k)*px52u(3)+$1(i+1,k)*px52u(4) &
                  +$1(i+2,k)*px52u(5))')
@@ -39,7 +39,7 @@ define(`D2DX', `($1(i-2,k)*px52u(1)+$1(i-1,k)*px52u(2) &
 #endif
 
 #if NONUNIFZ==1
-! d/dz
+	! d/dz
 #  if FDTYPE==0
 define(`DDZ', `($1(i,k-2)*pz51(k,1)+$1(i,k-1)*pz51(k,2) &
                 +$1(i,k  )*pz51(k,3)+$1(i,k+1)*pz51(k,4) &
@@ -49,37 +49,37 @@ define(`DDZ', `($1(i,k-2)*pz51(k,1)+$1(i,k-1)*pz51(k,2) &
                 +$1(i,k+1)*pz51(k,4) &
                 +$1(i,k+2)*pz51(k,5))')
 #  endif
-! d^2/dz^2
+	! d^2/dz^2
 define(`D2DZ', `($1(i,k-2)*pz52(k,1)+$1(i,k-1)*pz52(k,2) &
                  +$1(i,k  )*pz52(k,3)+$1(i,k+1)*pz52(k,4) &
                  +$1(i,k+2)*pz52(k,5))')
 #else
-! d/dz
+	! d/dz
 define(`DDZ', `($1(i,k-2)*pz51u(1)+$1(i,k-1)*pz51u(2) &
                 +$1(i,k+1)*pz51u(4) &
                 +$1(i,k+2)*pz51u(5))')
-! d^2/dz^2
+	! d^2/dz^2
 define(`D2DZ', `($1(i,k-2)*pz52u(1)+$1(i,k-1)*pz52u(2) &
                  +$1(i,k  )*pz52u(3)+$1(i,k+1)*pz52u(4) &
                  +$1(i,k+2)*pz52u(5))')
 #endif
 
-! 3-point stencil finite difference
+	! 3-point stencil finite difference
 
 #if NONUNIFX==1
-! d/dx
+	! d/dx
 define(`DDX3', `($1(i-1,k)*px31(i,1) &
                 +$1(i  ,k)*px31(i,2) &
                 +$1(i+1,k)*px31(i,3))')
-! d^2/dx^2
+	! d^2/dx^2
 define(`D2DX3', `($1(i-1,k)*px32(i,1) &
                  +$1(i  ,k)*px32(i,2) &
                  +$1(i+1,k)*px32(i,3))')
 #else
-! d/dx
+	! d/dx
 define(`DDX3', `($1(i-1,k)*px31u(1) &
                 +$1(i+1,k)*px31u(3))')
-! d^2/dx^2
+	! d^2/dx^2
 define(`D2DX3', `($1(i-1,k)*px32u(1) &
                  +$1(i  ,k)*px32u(2) &
                  +$1(i+1,k)*px32u(3))')
@@ -88,19 +88,19 @@ define(`D2DX3', `($1(i-1,k)*px32u(1) &
 
 
 #if NONUNIFZ==1
-! d/dz
+	! d/dz
 define(`DDZ3', `($1(i,k-1)*pz31(k,1) &
                 +$1(i,k  )*pz31(k,2) &
                 +$1(i,k+1)*pz31(k,3))')
-! d^2/dz^2
+	! d^2/dz^2
 define(`D2DZ3', `($1(i,k-1)*pz32(k,1) &
                  +$1(i,k  )*pz32(k,2) &
                  +$1(i,k+1)*pz32(k,3))')
 #else
-! d/dz
+	! d/dz
 define(`DDZ3', `($1(i,k-1)*pz31u(1) &
                 +$1(i,k+1)*pz31u(3))')
-! d^2/dz^2
+	! d^2/dz^2
 define(`D2DZ3', `($1(i,k-1)*pz32u(1) &
                  +$1(i,k  )*pz32u(2) &
                  +$1(i,k+1)*pz32u(3))')
@@ -114,14 +114,14 @@ USE stepping
 USE prob
 IMPLICIT NONE
 
-! The governing equations are defined here.    
+	! The governing equations are defined here.    
 CONTAINS
-!========================================================================
+	!========================================================================
 subroutine firststep
   IMPLICIT NONE
   INTEGER :: f
 
-! USE 1st order Euler for the first time step for trapzoidal leapfrog
+	! USE 1st order Euler for the first time step for trapzoidal leapfrog
   !$OMP WORKSHARE
   den=deni
   pux=puxi
@@ -157,7 +157,7 @@ subroutine firststep
   call fin
 
 end subroutine firststep
-!#######################################################################
+	!#######################################################################
 subroutine step
   USE omp_lib
 
@@ -166,21 +166,21 @@ subroutine step
   REAL(RTYPE) :: time_i(0:5)      ! intermediate time   
 
 #if TIMESTEPPING == 0 
-! Trapezoidal Leapfrog 
+	! Trapezoidal Leapfrog 
   ns=1
   time_i(0)=time+half*dt
   time_i(1)=time+dt
 #endif 
 
 #if TIMESTEPPING == 1
-! SSP RK2
+	! SSP RK2
   ns=1
   time_i(0)=time+dt
   time_i(1)=time+dt
 #endif
 
 #if TIMESTEPPING == 2
-! SSP RK3
+	! SSP RK3
   ns=2
   time_i(0)=time+dt
   time_i(1)=time+half*dt
@@ -188,7 +188,7 @@ subroutine step
 #endif 
 
 #if TIMESTEPPING == 3
-! 4-Stage SSP RK3
+	! 4-Stage SSP RK3
   ns=3
   time_i(0)=time+half*dt
   time_i(1)=time+dt
@@ -198,7 +198,7 @@ subroutine step
 
   
   do f=0, ns
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     call smom2(f)
 #if ISOTHERMAL==0
     call spre2(f)
@@ -217,7 +217,7 @@ subroutine step
   end do
   return
 end subroutine step
-!#######################################################################
+	!#######################################################################
 subroutine sden2(f)
   IMPLICIT NONE
   INTEGER :: f
@@ -237,13 +237,13 @@ subroutine sden2(f)
   do k=3, nz-2
   do i=3, nx-2
     divf(i,k)=DDX(fx)+DDZ(fz)
-! diffusion. Beware, this is not physical. Turn it off if you can.
+	! diffusion. Beware, this is not physical. Turn it off if you can.
 #if DIF_DEN==1
-! use 3-pt stencil
+	! use 3-pt stencil
     divf(i,k)=divf(i,k)+difden*(D2DX3(deni)+D2DZ3(deni))
 #elif DIF_DEN==2
-! use 5-pt stencil. Note that higher order stencil is not always 
-! "diffusive" and may generate spurious oscillations need steep jumps
+	! use 5-pt stencil. Note that higher order stencil is not always 
+	! "diffusive" and may generate spurious oscillations need steep jumps
     divf(i,k)=divf(i,k)+difden*(D2DX(deni)+D2DZ(deni))
 #endif
   end do
@@ -251,7 +251,7 @@ subroutine sden2(f)
   !$OMP END DO      
 
 #if HDIF_DEN==1
-!hyper diffusion
+	!hyper diffusion
 #  if (SIMPLE_LIMITER==0 || LIMITER_DEN==0)    
   call hyperdif(deni,hdifden,dif4den)
 #  else
@@ -267,6 +267,7 @@ subroutine sden2(f)
 #if DEN_MIN==0
     if (deni(i,k).le.zero.or.deni(i,k).gt.den_max) then
       ifabort=.true.
+      ! ifabort=.false. ! Erol, try this modification - doesn't work
       print*, 'x=',x(i),'  z=',z(k),'  den=',deni(i,k)
     end if
 #elif DEN_MIN==1 
@@ -287,10 +288,10 @@ subroutine sden2(f)
   !$OMP END DO
 
 
-!
+	!
   return
 end subroutine sden2
-!*************************************************************
+	!*************************************************************
 subroutine spre2(f)
   IMPLICIT NONE
   INTEGER :: f
@@ -310,7 +311,7 @@ subroutine spre2(f)
   !$OMP END DO      
 
 #if THERMAL_CONDUCT==1
-! Calculate heat flux, use divfx, divfy, divfz as scratch
+	! Calculate heat flux, use divfx, divfy, divfz as scratch
   !$OMP DO 
   do k=2,nz-1
   do i=2,nx-1
@@ -347,20 +348,20 @@ subroutine spre2(f)
   do i=3, nx-2
     divf(i,k)=DDX(fx)+DDZ(fz)
 
-!===============pre====================================
+	!===============pre====================================
     divf(i,k)=divf(i,k)    &
               +omgamma*prei(i,k)*(DDX(vx)+DDZ(vz))
-!======================================================
-! Ohmic heating, the "half" comes from the fact that heat goes to electron
-! and ion equally.  If PE is stepped, then heat goes to electron.
+	!======================================================
+	! Ohmic heating, the "half" comes from the fact that heat goes to electron
+	! and ion equally.  If PE is stepped, then heat goes to electron.
 #if OHMIC_HEATING==1 && (TWOFLUID==0 || SPE==0)
     divf(i,k)=divf(i,k)-omgamma*half*electron_heating(i,k) 
 #endif
 
-! Viscous heating 
+	! Viscous heating 
 #if VISCOSITY==1 && VISCOUS_HEATING==1
 #  if TWOFLUID==0 || SPE==0
-! Heating goes to electron and ion equally --> half 
+	! Heating goes to electron and ion equally --> half 
     divf(i,k)=divf(i,k)-omgamma*half*ion_heating(i,k) 
 #  else    
     divf(i,k)=divf(i,k)-omgamma*ion_heating(i,k) 
@@ -370,12 +371,12 @@ subroutine spre2(f)
 
 
 
-! Thermal exchange between species
+	! Thermal exchange between species
 #if THERMAL_EXCHANGE==1 && TWOFLUID==1 && SPE==1
     divf(i,k)=divf(i,k)-omgamma*heat_exchange(i,k)
 #endif
 
-! Thermal Conductivity
+	! Thermal Conductivity
 #if THERMAL_CONDUCT==1
 #  if TWOFLUID==0 || SPE==0
     ! Distribute evenly between electron and ion -> half
@@ -393,17 +394,17 @@ subroutine spre2(f)
   !$OMP END DO      
 
 #if HDIF_PRE==1
-!hyper diffusion
+	!hyper diffusion
 #  if (SIMPLE_LIMITER==0 || LIMITER_PRE==0)
   call hyperdif(prei,hdifpre,dif4pre)
 #  else
   call hyperdif_limited(prei,hdifpre,dif4pre)
 #  endif
-!
+	!
 #endif
 
   call step2d(prei,pre,divf,f)
-!
+	!
 #if POSITIVE_PRE==1
   !$OMP DO 
   do k=1,nz
@@ -415,8 +416,8 @@ subroutine spre2(f)
 #endif 
   return
 end subroutine spre2
-!
-!*************************************************************
+	!
+	!*************************************************************
 subroutine spe2(f)
   IMPLICIT NONE
   INTEGER :: f
@@ -436,10 +437,10 @@ subroutine spe2(f)
   do i=3, nx-2
     divf(i,k)=DDX(fx)+DDZ(fz)
 
-!===============pe====================================
+	!===============pe====================================
     divf(i,k)=divf(i,k)    &
               +omgamma*pei(i,k)*(DDX(vex)+DDZ(vez))
-!======================================================
+	!======================================================
 #if OHMIC_HEATING==1
     divf(i,k)=divf(i,k)-omgamma*electron_heating(i,k)
 #endif
@@ -451,17 +452,17 @@ subroutine spe2(f)
   !$OMP END DO
 
 #if HDIF_PE==1
-!hyper diffusion
+	!hyper diffusion
 #  if (SIMPLE_LIMITER==0 || LIMITER_PE==0)
   call hyperdif_e(pei,hdifpe,dif4pe)
 #  else
   call hyperdif_e_limited(pei,hdifpe,dif4pe)
 #  endif
-!
+	!
 #endif
 
   call step2d(pei,pe,divf,f)
-!
+	!
 
 #if POSITIVE_PE==1 
   !$OMP DO 
@@ -475,18 +476,18 @@ subroutine spe2(f)
 
   return
 end subroutine spe2
-!
+	!
 
-!*************************************************************
+	!*************************************************************
 subroutine smom2(f)
-!
+	!
   IMPLICIT NONE
   INTEGER :: f
   INTEGER :: i, k
   REAL(RTYPE) :: sft, dxvden, dzvden
-! step momenta -- pux, puy, puz
+	! step momenta -- pux, puy, puz
 
-! notice that pt=prei+pei
+	! notice that pt=prei+pei
   !$OMP DO 
   do k=1,nz
   do i=1,nx
@@ -517,7 +518,7 @@ subroutine smom2(f)
   !$OMP END DO NOWAIT
 
 #if VISCOSITY==1
-! Viscous Stress Tensor
+	! Viscous Stress Tensor
   !$OMP DO 
   do k=2,nz-1
   do i=2,nx-1
@@ -561,7 +562,7 @@ subroutine smom2(f)
     divfy(i,k)=DDX(fxy)+DDZ(fyz)
 #  endif             
 
-!===============  Momentum ====================================
+	!===============  Momentum ====================================
 #if (JXB==1 || AMBIPOLAR==1 || (TWOFLUID==1 && HALL_CAL==1))    
     divfx(i,k)=divfx(i,k)+fbx(i,k)
     divfz(i,k)=divfz(i,k)+fbz(i,k)
@@ -569,8 +570,8 @@ subroutine smom2(f)
     divfy(i,k)=divfy(i,k)+fby(i,k)
 #  endif             
 #endif
-!======================================================
-! Viscosity & friction
+	!======================================================
+	! Viscosity & friction
 #if VISCOSITY==1
     dxvden=DDX3(vden)
     dzvden=DDZ3(vden)
@@ -614,7 +615,7 @@ subroutine smom2(f)
 #  endif    
 #endif
 
-! Gravity
+	! Gravity
 #if GRAVITY==1
     divfz(i,k)=divfz(i,k)-deni(i,k)*gravity
 #endif 
@@ -625,7 +626,7 @@ subroutine smom2(f)
 
 
 #if HDIF_MOM==1
-!hyper diffusion
+	!hyper diffusion
 #  if (SIMPLE_LIMITER==0 || LIMITER_MOM==0)
   call hyperdif_vec(puxi,puyi,puzi,hdifmom,dif4mom)
 #  else
@@ -633,29 +634,29 @@ subroutine smom2(f)
 #  endif
 #endif
 
-!
+	!
 
   call step2d(puxi,pux,divfx,f)
   call step2d(puzi,puz,divfz,f)
 #if TWO_AND_HALF==1
   call step2d(puyi,puy,divfy,f)
 #endif
-!
+	!
   return
 end subroutine smom2
-!
+	!
 
 
 
-!*************************************************************
+	!*************************************************************
 subroutine spux2(f)
-!
+	!
   IMPLICIT NONE
   INTEGER :: f
   INTEGER :: i, k
   REAL(RTYPE) :: sft
 
-! notice that ptb=prei+pei+byi^2/2
+	! notice that ptb=prei+pei+byi^2/2
   !$OMP DO 
   do k=1,nz
   do i=1,nx
@@ -687,13 +688,13 @@ subroutine spux2(f)
   do i=3,nx-2
     divf(i,k)=DDX(fx)+DDZ(fz)
 
-!===============pux====================================
+	!===============pux====================================
 #if (JXB==1 || (TWOFLUID==1 && HALL_CAL==1))    
     divf(i,k)=divf(i,k)+fbx(i,k)
 #endif
 
-!======================================================
-! Viscosity & friction
+	!======================================================
+	! Viscosity & friction
 #if VISCOSITY==1
     divf(i,k)=divf(i,k)+visc*(D2DX(puxi)+D2DZ(puxi)) 
 #endif
@@ -710,7 +711,7 @@ subroutine spux2(f)
   !$OMP END DO
 
 #if HDIF_MOM==1
-!hyper diffusion
+	!hyper diffusion
 #  if (SIMPLE_LIMITER==0 || LIMITER_MOM==0)
   call hyperdif(puxi,hdifmom,dif4mom)
 #  else
@@ -718,14 +719,14 @@ subroutine spux2(f)
 #  endif
 #endif
 
-!
+	!
   call step2d(puxi,pux,divf,f)
 
-!
+	!
   return
 end subroutine spux2
-!
-!*************************************************************
+	!
+	!*************************************************************
 subroutine spuy2(f)
   IMPLICIT NONE
   INTEGER :: f
@@ -754,12 +755,12 @@ subroutine spuy2(f)
   do k=3,nz-2
   do i=3,nx-2
     divf(i,k)=DDX(fx)+DDZ(fz)
-!==================puy=========================================
+	!==================puy=========================================
 #if (JXB==1 || (TWOFLUID==1 && HALL_CAL==1))    
     divf(i,k)=divf(i,k)+fby(i,k)
 #endif
-!==============================================================
-! Viscosity & friction
+	!==============================================================
+	! Viscosity & friction
 #if VISCOSITY==1
     divf(i,k)=divf(i,k)+visc*(D2DX(puyi)+D2DZ(puyi)) 
 #endif
@@ -773,10 +774,10 @@ subroutine spuy2(f)
 #endif
   end do
   end do
-!$OMP END DO
+	!$OMP END DO
 
 #if HDIF_MOM==1
-!hyper diffusion
+	!hyper diffusion
 #  if (SIMPLE_LIMITER==0 || LIMITER_MOM==0)
   call hyperdif(puyi,hdifmom,dif4mom)
 #  else
@@ -786,22 +787,22 @@ subroutine spuy2(f)
 
 
   call step2d(puyi,puy,divf,f)
-!
+	!
   return
 end subroutine spuy2
-!
+	!
 
 
-!*************************************************************
+	!*************************************************************
 subroutine spuz2(f)
   IMPLICIT NONE
   INTEGER :: f
   INTEGER :: i, k
   REAL(RTYPE) :: sft
 
-! notice that ptb=prei+pei+byi^2/2
+	! notice that ptb=prei+pei+byi^2/2
 
-!$OMP DO 
+	!$OMP DO 
   do k=1, nz
   do i=1, nx
     fx(i,k)=-vx(i,k)*puzi(i,k)
@@ -821,7 +822,7 @@ subroutine spuz2(f)
     
   end do
   end do
-!$OMP END DO
+	!$OMP END DO
 
 #if RANDOM_FORCE==1
   sft=two*rfamp/sqrt(dt)
@@ -832,12 +833,12 @@ subroutine spuz2(f)
   do i=3,nx-2
     divf(i,k)=DDX(fx)+DDZ(fz)
 
-!===============puz====================================
+	!===============puz====================================
 #if (JXB==1 || (TWOFLUID==1 && HALL_CAL==1))    
     divf(i,k)=divf(i,k)+fbz(i,k)
 #endif
-!======================================================
-! Viscosity & friction
+	!======================================================
+	! Viscosity & friction
 #if VISCOSITY==1
     divf(i,k)=divf(i,k)+visc*(D2DX(puzi)+D2DZ(puzi)) 
 #endif
@@ -857,7 +858,7 @@ subroutine spuz2(f)
   !$OMP END DO
 
 #if HDIF_MOM==1
-!hyper diffusion
+	!hyper diffusion
 #  if (SIMPLE_LIMITER==0 || LIMITER_MOM==0)
   call hyperdif(puzi,hdifmom,dif4mom)
 #  else
@@ -867,14 +868,14 @@ subroutine spuz2(f)
 
   call step2d(puzi,puz,divf,f)
 
-!
+	!
 
   return
 end subroutine spuz2
-!
-!*************************************************************
+	!
+	!*************************************************************
 subroutine sby2(f)
-!
+	!
   IMPLICIT NONE
   INTEGER :: f
   INTEGER :: i, k
@@ -882,9 +883,9 @@ subroutine sby2(f)
   !$OMP DO 
   do k=3,nz-2
   do i=3,nx-2
-!=============== curl E =====================================
+	!=============== curl E =====================================
     divf(i,k)=DDX(ez)-DDZ(ex)
-!============================================================
+	!============================================================
 #if (RESISTIVITY==1 && B_DIFF==1)
     divf(i,k)=divf(i,k)+eta*(D2DX(byi)+D2DZ(byi))
 #elif (RESISTIVITY==1 && B_DIFF==2)
@@ -895,7 +896,7 @@ subroutine sby2(f)
   end do
   !$OMP END DO
 
-!hyper diffusion
+	!hyper diffusion
 #if (HDIF_B==1 && TWOFLUID==1)
 #  if (SIMPLE_LIMITER==0 || LIMITER_B==0)  
   call hyperdif_e(byi,hdifb,dif4b)
@@ -912,11 +913,11 @@ subroutine sby2(f)
 
   call step2d(byi,by,divf,f)
 
-!
+	!
   return
 end subroutine sby2
-! 
-!*************************************************************
+	! 
+	!*************************************************************
 subroutine spsi2(f)
   IMPLICIT NONE
   INTEGER :: f
@@ -935,7 +936,7 @@ subroutine spsi2(f)
   end do
   !$OMP END DO
 
-!hyper diffusion
+	!hyper diffusion
 #if (HDIF_B==1 && TWOFLUID==1)
 #  if (SIMPLE_LIMITER==0 || LIMITER_B==0)  
   call hyperdif_e(psii,hdifb,dif4b)
@@ -951,28 +952,28 @@ subroutine spsi2(f)
 #  endif
 #endif
 
-!
+	!
   call step2d(psii,psi,divf,f)
 
-!
+	!
   return
 end subroutine spsi2
-!
-!*************************************************************
+	!
+	!*************************************************************
 subroutine hyperdif(foo,hypdif,dif4)
-! add hyperdiffusion to divf
+	! add hyperdiffusion to divf
   IMPLICIT NONE
   REAL(RTYPE) :: foo(nx,nz), dif4, hypdif
   INTEGER :: i, k
   REAL(RTYPE) :: dif4x, dif4z
 
-! Hyper diffusion, see Guzdar et. at. 1993.
-! For non-uniform grids, we don't try to calculate it precisely, since
-! it is hyper. We assume the grid size does not change much.
-! hypdif is the coefficient for the velocity dependent hyper diffusion
-! dif4 is the coefficient for 4th order hyper diffusion.
-! The hyperdiffusion coefficient is approximately (dx^3)(2*|vx|*hypdif+dif4)/24
-! along x and  (dz^3)(2*|vz|*hypdif+dif4)/24 along z
+	! Hyper diffusion, see Guzdar et. at. 1993.
+	! For non-uniform grids, we don't try to calculate it precisely, since
+	! it is hyper. We assume the grid size does not change much.
+	! hypdif is the coefficient for the velocity dependent hyper diffusion
+	! dif4 is the coefficient for 4th order hyper diffusion.
+	! The hyperdiffusion coefficient is approximately (dx^3)(2*|vx|*hypdif+dif4)/24
+	! along x and  (dz^3)(2*|vz|*hypdif+dif4)/24 along z
 
   !$OMP DO 
   do k=2,nz-2
@@ -1006,9 +1007,9 @@ subroutine hyperdif(foo,hypdif,dif4)
   end do
   !$OMP END DO
 
-! Although this part may be fused into the previous loop to 
-! be more cache friendly, it will cause problem when OpenMP
-! is used.
+	! Although this part may be fused into the previous loop to 
+	! be more cache friendly, it will cause problem when OpenMP
+	! is used.
 
   !$OMP DO 
   do k=3,nz-2
@@ -1021,24 +1022,24 @@ subroutine hyperdif(foo,hypdif,dif4)
 
 
 end subroutine hyperdif
-!########################################################################
+	!########################################################################
 
-!*************************************************************
+	!*************************************************************
 subroutine hyperdif_e(foo,hypdif,dif4)
-! add hyperdiffusion to divf
-! same as hyperdif except using ve instead of v.
+	! add hyperdiffusion to divf
+	! same as hyperdif except using ve instead of v.
   IMPLICIT NONE
   REAL(RTYPE) :: foo(nx,nz), dif4, hypdif
   INTEGER :: i, k
   REAL(RTYPE) :: dif4x, dif4z
 
-! Hyper diffusion, see Guzdar et. at. 1993.
-! For non-uniform grids, we don't try to calculate it precisely, since
-! it is hyper. We assume the grid size does not change much.
-! hypdif is the coefficient for the velocity dependent hyper diffusion
-! dif4 is the coefficient for 4th order hyper diffusion.
-! The hyperdiffusion coefficient is approximately (dx^3)(2*|vex|*hypdif+dif4)/24
-! along x and  (dz^3)(2*|vez|*hypdif+dif4)/24 along z
+	! Hyper diffusion, see Guzdar et. at. 1993.
+	! For non-uniform grids, we don't try to calculate it precisely, since
+	! it is hyper. We assume the grid size does not change much.
+	! hypdif is the coefficient for the velocity dependent hyper diffusion
+	! dif4 is the coefficient for 4th order hyper diffusion.
+	! The hyperdiffusion coefficient is approximately (dx^3)(2*|vex|*hypdif+dif4)/24
+	! along x and  (dz^3)(2*|vez|*hypdif+dif4)/24 along z
 
   !$OMP DO 
   do k=2,nz-2
@@ -1074,9 +1075,9 @@ subroutine hyperdif_e(foo,hypdif,dif4)
   end do
   !$OMP END DO      
 
-! Although this part may be fused into the previous loop to 
-! be more cache friendly, it will cause problem when OpenMP
-! is used.
+	! Although this part may be fused into the previous loop to 
+	! be more cache friendly, it will cause problem when OpenMP
+	! is used.
 
   !$OMP DO  
   do k=3,nz-2
@@ -1088,22 +1089,22 @@ subroutine hyperdif_e(foo,hypdif,dif4)
   !$OMP END DO
 
 end subroutine hyperdif_e
-!*************************************************************
+	!*************************************************************
 subroutine hyperdif_limited(foo,hypdif,dif4)
-! add hyperdiffusion to divf 
+	! add hyperdiffusion to divf 
   IMPLICIT NONE
   REAL(RTYPE) :: foo(nx,nz), dif4, hypdif
   INTEGER :: i, k
   REAL(RTYPE) :: dif4x, dif4z
 
-! Hyper diffusion, see Guzdar et. at. 1993.
-! For non-uniform grids, we don't try to calculate it precisely, since
-! it is hyper. We assume the grid size does not change much.
-! hypdif is the coefficient for the velocity dependent hyper diffusion
-! dif4 is the coefficient for 4th order hyper diffusion.
-! The hyperdiffusion coefficient is approximately (dx^3)(2*|vx|*hypdif+dif4)/24
-! along x and  (dz^3)(2*|vz|*hypdif+dif4)/24 along z
-! Simple limiter is applied when SIMPLE_LIMITER>0 
+	! Hyper diffusion, see Guzdar et. at. 1993.
+	! For non-uniform grids, we don't try to calculate it precisely, since
+	! it is hyper. We assume the grid size does not change much.
+	! hypdif is the coefficient for the velocity dependent hyper diffusion
+	! dif4 is the coefficient for 4th order hyper diffusion.
+	! The hyperdiffusion coefficient is approximately (dx^3)(2*|vx|*hypdif+dif4)/24
+	! along x and  (dz^3)(2*|vz|*hypdif+dif4)/24 along z
+	! Simple limiter is applied when SIMPLE_LIMITER>0 
 
   !$OMP DO 
   do k=2,nz-2
@@ -1159,9 +1160,9 @@ subroutine hyperdif_limited(foo,hypdif,dif4)
   end do
   !$OMP END DO
 
-! Although this part may be fused into the previous loop to 
-! be more cache friendly, it will cause problem when OpenMP
-! is used.
+	! Although this part may be fused into the previous loop to 
+	! be more cache friendly, it will cause problem when OpenMP
+	! is used.
 
   !$OMP DO 
   do k=3,nz-2
@@ -1173,25 +1174,25 @@ subroutine hyperdif_limited(foo,hypdif,dif4)
   !$OMP END DO
 
 end subroutine hyperdif_limited
-!########################################################################
+	!########################################################################
 
-!*************************************************************
+	!*************************************************************
 subroutine hyperdif_e_limited(foo,hypdif,dif4)
-! add hyperdiffusion to divf
-! same as hyperdif except using ve instead of v.
+	! add hyperdiffusion to divf
+	! same as hyperdif except using ve instead of v.
   IMPLICIT NONE
   REAL(RTYPE) :: foo(nx,nz), dif4, hypdif
   INTEGER :: i, k
   REAL(RTYPE) :: dif4x, dif4z
 
-! Hyper diffusion, see Guzdar et. at. 1993.
-! For non-uniform grids, we don't try to calculate it precisely, since
-! it is hyper. We assume the grid size does not change much.
-! hypdif is the coefficient for the velocity dependent hyper diffusion
-! dif4 is the coefficient for 4th order hyper diffusion.
-! The hyperdiffusion coefficient is approximately (dx^3)(2*|vex|*hypdif+dif4)/24
-! along x and  (dz^3)(2*|vez|*hypdif+dif4)/24 along z
-! Simple limiter is applied when SIMPLE_LIMITER>0
+	! Hyper diffusion, see Guzdar et. at. 1993.
+	! For non-uniform grids, we don't try to calculate it precisely, since
+	! it is hyper. We assume the grid size does not change much.
+	! hypdif is the coefficient for the velocity dependent hyper diffusion
+	! dif4 is the coefficient for 4th order hyper diffusion.
+	! The hyperdiffusion coefficient is approximately (dx^3)(2*|vex|*hypdif+dif4)/24
+	! along x and  (dz^3)(2*|vez|*hypdif+dif4)/24 along z
+	! Simple limiter is applied when SIMPLE_LIMITER>0
 
   !$OMP DO 
   do k=2,nz-2
@@ -1249,9 +1250,9 @@ subroutine hyperdif_e_limited(foo,hypdif,dif4)
   end do
   !$OMP END DO
 
-! Although this part may be fused into the previous loop to 
-! be more cache friendly, it will cause problem when OpenMP
-! is used.
+	! Although this part may be fused into the previous loop to 
+	! be more cache friendly, it will cause problem when OpenMP
+	! is used.
 
   !$OMP DO 
   do k=3,nz-2
@@ -1264,10 +1265,10 @@ subroutine hyperdif_e_limited(foo,hypdif,dif4)
 
 end subroutine hyperdif_e_limited
 
-!*************************************************************
+	!*************************************************************
 subroutine hyperdif_vec(fox,foy,foz,hypdif,dif4)
-! Vector version of hyperdif  
-! add hyperdiffusion to divfx, divfy, divfz
+	! Vector version of hyperdif  
+	! add hyperdiffusion to divfx, divfy, divfz
   USE comm
   IMPLICIT NONE
   REAL(RTYPE) :: fox(nx,nz), foy(nx,nz), foz(nx,nz)
@@ -1276,13 +1277,13 @@ subroutine hyperdif_vec(fox,foy,foz,hypdif,dif4)
   REAL(RTYPE) :: dif4x, dif4z
 
 
-! Hyper diffusion, see Guzdar et. at. 1993.
-! For non-uniform grids, we don't try to calculate it precisely, since
-! it is hyper. We assume the grid size does not change much.
-! hypdif is the coefficient for the velocity dependent hyper diffusion
-! dif4 is the coefficient for 4th order hyper diffusion.
-! The hyperdiffusion coefficient is approximately (dx^3)(2*|vx|*hypdif+dif4)/24
-! along x, and (dz^3)(2*|vz|*hypdif+dif4)/24 along z
+	! Hyper diffusion, see Guzdar et. at. 1993.
+	! For non-uniform grids, we don't try to calculate it precisely, since
+	! it is hyper. We assume the grid size does not change much.
+	! hypdif is the coefficient for the velocity dependent hyper diffusion
+	! dif4 is the coefficient for 4th order hyper diffusion.
+	! The hyperdiffusion coefficient is approximately (dx^3)(2*|vx|*hypdif+dif4)/24
+	! along x, and (dz^3)(2*|vz|*hypdif+dif4)/24 along z
 
 
 #if (VDEPT_HDIF>0 || HDIF4>0)                
@@ -1331,9 +1332,9 @@ subroutine hyperdif_vec(fox,foy,foz,hypdif,dif4)
   end do
   !$OMP END DO
 
-! Although this part may be fused into the previous loop to 
-! be more cache friendly, it will cause problem when OpenMP
-! is used.
+	! Although this part may be fused into the previous loop to 
+	! be more cache friendly, it will cause problem when OpenMP
+	! is used.
   !$OMP DO 
   do k=3,nz-2
   do i=3,nx-2
@@ -1350,10 +1351,10 @@ subroutine hyperdif_vec(fox,foy,foz,hypdif,dif4)
   !$OMP END DO
 #endif
 end subroutine hyperdif_vec
-!########################################################################
+	!########################################################################
 subroutine hyperdif_vec_e(fox,foy,foz,hypdif,dif4)
-! Vector version of hyperdif_e  
-! add hyperdiffusion to divfx, divfy, divfz
+	! Vector version of hyperdif_e  
+	! add hyperdiffusion to divfx, divfy, divfz
   USE comm
   IMPLICIT NONE
   REAL(RTYPE) :: fox(nx,nz), foy(nx,nz), foz(nx,nz)
@@ -1363,13 +1364,13 @@ subroutine hyperdif_vec_e(fox,foy,foz,hypdif,dif4)
   REAL(RTYPE) :: dif4x, dif4z
 
 
-! Hyper diffusion, see Guzdar et. at. 1993.
-! For non-uniform grids, we don't try to calculate it precisely, since
-! it is hyper. We assume the grid size does not change much.
-! hypdif is the coefficient for the velocity dependent hyper diffusion
-! dif4 is the coefficient for 4th order hyper diffusion.
-! The hyperdiffusion coefficient is approximately (dx^3)(2*|vex|*hypdif+dif4)/24
-! along x, and (dz^3)(2*|vez|*hypdif+dif4)/24 along z
+	! Hyper diffusion, see Guzdar et. at. 1993.
+	! For non-uniform grids, we don't try to calculate it precisely, since
+	! it is hyper. We assume the grid size does not change much.
+	! hypdif is the coefficient for the velocity dependent hyper diffusion
+	! dif4 is the coefficient for 4th order hyper diffusion.
+	! The hyperdiffusion coefficient is approximately (dx^3)(2*|vex|*hypdif+dif4)/24
+	! along x, and (dz^3)(2*|vez|*hypdif+dif4)/24 along z
 
 
 #if (VDEPT_HDIF>0 || HDIF4>0)                
@@ -1418,9 +1419,9 @@ subroutine hyperdif_vec_e(fox,foy,foz,hypdif,dif4)
   end do
   !$OMP END DO
 
-! Although this part may be fused into the previous loop to 
-! be more cache friendly, it will cause problem when OpenMP
-! is used.
+	! Although this part may be fused into the previous loop to 
+	! be more cache friendly, it will cause problem when OpenMP
+	! is used.
   !$OMP DO
   do k=3,nz-2
   do i=3,nx-2
@@ -1438,11 +1439,11 @@ subroutine hyperdif_vec_e(fox,foy,foz,hypdif,dif4)
 #endif
 
 end subroutine hyperdif_vec_e
-!########################################################################
+	!########################################################################
 subroutine hyperdif_vec_limited(fox,foy,foz,hypdif,dif4)
   
-! Vector version of hyperdif_limited  
-! add hyperdiffusion to divfx, divfy, divfz
+	! Vector version of hyperdif_limited  
+	! add hyperdiffusion to divfx, divfy, divfz
 
   USE comm
   IMPLICIT NONE
@@ -1453,14 +1454,14 @@ subroutine hyperdif_vec_limited(fox,foy,foz,hypdif,dif4)
   REAL(RTYPE) :: dif4x, dif4z
 
 
-! Hyper diffusion, see Guzdar et. at. 1993.
-! For non-uniform grids, we don't try to calculate it precisely, since
-! it is hyper. We assume the grid size does not change much.
-! hypdif is the coefficient for the velocity dependent hyper diffusion
-! dif4 is the coefficient for 4th order hyper diffusion.
-! The hyperdiffusion coefficient is approximately (dx^3)(2*|vx|*hypdif+dif4)/24
-! along x, and (dz^3)(2*|vz|*hypdif+dif4)/24 along z
-! Simple limiter is applied when SIMPLE_LIMITER>0
+	! Hyper diffusion, see Guzdar et. at. 1993.
+	! For non-uniform grids, we don't try to calculate it precisely, since
+	! it is hyper. We assume the grid size does not change much.
+	! hypdif is the coefficient for the velocity dependent hyper diffusion
+	! dif4 is the coefficient for 4th order hyper diffusion.
+	! The hyperdiffusion coefficient is approximately (dx^3)(2*|vx|*hypdif+dif4)/24
+	! along x, and (dz^3)(2*|vz|*hypdif+dif4)/24 along z
+	! Simple limiter is applied when SIMPLE_LIMITER>0
 
 #if (VDEPT_HDIF>0 || HDIF4>0)                
   !$OMP DO 
@@ -1573,9 +1574,9 @@ subroutine hyperdif_vec_limited(fox,foy,foz,hypdif,dif4)
   end do
   !$OMP END DO
 
-! Although this part may be fused into the previous loop to 
-! be more cache friendly, it will cause problem when OpenMP
-! is used.
+	! Although this part may be fused into the previous loop to 
+	! be more cache friendly, it will cause problem when OpenMP
+	! is used.
   !$OMP DO 
   do k=3,nz-2
   do i=3,nx-2
@@ -1593,10 +1594,10 @@ subroutine hyperdif_vec_limited(fox,foy,foz,hypdif,dif4)
 #endif
 
 end subroutine hyperdif_vec_limited
-!########################################################################
+	!########################################################################
 subroutine hyperdif_vec_e_limited(fox,foy,foz,hypdif,dif4)
-! Vector version of hyperdif_e_limited  
-! add hyperdiffusion to divfx, divfy, divfz
+	! Vector version of hyperdif_e_limited  
+	! add hyperdiffusion to divfx, divfy, divfz
   USE comm
   IMPLICIT NONE
   REAL(RTYPE) :: fox(nx,nz), foy(nx,nz), foz(nx,nz)
@@ -1606,14 +1607,14 @@ subroutine hyperdif_vec_e_limited(fox,foy,foz,hypdif,dif4)
   REAL(RTYPE) :: dif4x, dif4z
 
 
-! Hyper diffusion, see Guzdar et. at. 1993.
-! For non-uniform grids, we don't try to calculate it precisely, since
-! it is hyper. We assume the grid size does not change much.
-! hypdif is the coefficient for the velocity dependent hyper diffusion
-! dif4 is the coefficient for 4th order hyper diffusion.
-! The hyperdiffusion coefficient is approximately (dx^3)(2*|vex|*hypdif+dif4)/24
-! along x, and (dz^3)(2*|vez|*hypdif+dif4)/24 along z
-! Simple limiter is applied when SIMPLE_LIMITER>0
+	! Hyper diffusion, see Guzdar et. at. 1993.
+	! For non-uniform grids, we don't try to calculate it precisely, since
+	! it is hyper. We assume the grid size does not change much.
+	! hypdif is the coefficient for the velocity dependent hyper diffusion
+	! dif4 is the coefficient for 4th order hyper diffusion.
+	! The hyperdiffusion coefficient is approximately (dx^3)(2*|vex|*hypdif+dif4)/24
+	! along x, and (dz^3)(2*|vez|*hypdif+dif4)/24 along z
+	! Simple limiter is applied when SIMPLE_LIMITER>0
 
 #if (VDEPT_HDIF>0 || HDIF4>0)                
   !$OMP DO 
@@ -1726,9 +1727,9 @@ subroutine hyperdif_vec_e_limited(fox,foy,foz,hypdif,dif4)
   end do
   !$OMP END DO
 
-! Although this part may be fused into the previous loop to 
-! be more cache friendly, it will cause problem when OpenMP
-! is used.
+	! Although this part may be fused into the previous loop to 
+	! be more cache friendly, it will cause problem when OpenMP
+	! is used.
   !$OMP DO 
   do k=3,nz-2
   do i=3,nx-2
@@ -1749,9 +1750,9 @@ subroutine hyperdif_vec_e_limited(fox,foy,foz,hypdif,dif4)
 end subroutine hyperdif_vec_e_limited
 
 
-!########################################################################
+	!########################################################################
 subroutine fin
-! fill in ghost cells and calculate other fields
+	! fill in ghost cells and calculate other fields
 
 
   call fin_primary
@@ -1768,7 +1769,7 @@ subroutine fin
 #endif       
 end subroutine fin
 
-!########################################################################
+	!########################################################################
 subroutine cal_b
   INTEGER :: i, k
 
@@ -1797,13 +1798,13 @@ subroutine cal_b
   !$OMP END DO
 end subroutine cal_b
 
-!########################################################################
+	!########################################################################
 subroutine cal_aux_field
-! Calculate Auxiliary fields
+	! Calculate Auxiliary fields
   IMPLICIT NONE
   INTEGER :: i, k
   REAL(RTYPE) :: ideni, idt
-!=========================================
+	!=========================================
   idt=-0.25_RTYPE/dt/omgamma
   !$OMP DO 
   do k=1,nz
@@ -1902,7 +1903,7 @@ subroutine cal_aux_field
   do k=3,nz-2
   do i=3,nx-2
 #if J_CAL==0    
-! use 5-pt stencil to calculate J
+	! use 5-pt stencil to calculate J
 #  if JY_CAL==0    
     jyi(i,k)=-(D2DX(psii)+D2DZ(psii))  ! jyi=-del2 psii
 #  elif JY_CAL==1
@@ -1913,7 +1914,7 @@ subroutine cal_aux_field
     jzi(i,k)=DDX(byi)
 #  endif
 #elif J_CAL==1
-! use 3-pt stencil to calculate J
+	! use 3-pt stencil to calculate J
 #  if JY_CAL==0    
     jyi(i,k)=-(D2DX3(psii)+D2DZ3(psii))  ! jyi=-del2 psii
 #  elif JY_CAL==1
@@ -1924,7 +1925,7 @@ subroutine cal_aux_field
     jzi(i,k)=DDX3(byi)
 #  endif
 #endif
-! pre-calculate magnetic force
+	! pre-calculate magnetic force
 #if (JXB==0)
 #  if ((TWOFLUID==1 && HALL_CAL==1) || AMBIPOLAR==1) 
     fbx(i,k)=DDX(fxx)+DDZ(fxz)
@@ -1950,9 +1951,9 @@ subroutine cal_aux_field
 
 
 end subroutine cal_aux_field
-!########################################################################
+	!########################################################################
 subroutine cal_e
-! Calculate E fields
+	! Calculate E fields
   IMPLICIT NONE
   INTEGER :: i, k
   REAL(RTYPE) :: bb, bbx, bby, bbz, xi_e, F1, F2, delta
@@ -1976,7 +1977,7 @@ subroutine cal_e
   do k=3,nz-2
   do i=3,nx-2
 #if TWOFLUID==0
-!============= Ideal MHD part ================================
+	!============= Ideal MHD part ================================
     ey(i,k)=vx(i,k)*bzi(i,k)-vz(i,k)*bxi(i,k)
 #  if TWO_AND_HALF==1
     ! Ex and Ez only used in 3D or 2.5 D
@@ -1984,10 +1985,10 @@ subroutine cal_e
     ex(i,k)=+vz(i,k)*byi(i,k)-bzi(i,k)*vy(i,k)
 #  endif
 #elif TWOFLUID==1
-!=========== Ideal + two-fluid Hall terms. ===============
-! Note that two-fluid runs must be 2.5D
+	!=========== Ideal + two-fluid Hall terms. ===============
+	! Note that two-fluid runs must be 2.5D
 #  if HALL_CAL==0
-! Calculate Hall term with JxB, using  -Ve x B
+	! Calculate Hall term with JxB, using  -Ve x B
 #    if ISOTHERMAL==0
     dideni=di/deni(i,k)
     ex(i,k)=vez(i,k)*byi(i,k)-vey(i,k)*bzi(i,k) &
@@ -1996,16 +1997,16 @@ subroutine cal_e
     ez(i,k)=vey(i,k)*bxi(i,k)-vex(i,k)*byi(i,k) &
             +dideni*(-DDZ(pei))
 #    else
-! Isothermal EOS, ignore grad. pe term
-! Note that, in this case ez and ex are not exactly the electric field,
-! but the ignored pressure gradient term contributes nothing after taking 
-! the curl
+	! Isothermal EOS, ignore grad. pe term
+	! Note that, in this case ez and ex are not exactly the electric field,
+	! but the ignored pressure gradient term contributes nothing after taking 
+	! the curl
     ex(i,k)=vez(i,k)*byi(i,k)-vey(i,k)*bzi(i,k) 
     ey(i,k)=vex(i,k)*bzi(i,k)-vez(i,k)*bxi(i,k) 
     ez(i,k)=vey(i,k)*bxi(i,k)-vex(i,k)*byi(i,k) 
 #    endif    
 #  elif HALL_CAL==1
-! Calculate Hall term with magnetic force (precalculated in CAL_AUX)
+	! Calculate Hall term with magnetic force (precalculated in CAL_AUX)
     dideni=di/deni(i,k)
 #    if ISOTHERMAL==0
     ex(i,k)=vz(i,k)*byi(i,k)-vy(i,k)*bzi(i,k) &
@@ -2015,10 +2016,10 @@ subroutine cal_e
     ez(i,k)=vy(i,k)*bxi(i,k)-vx(i,k)*byi(i,k) &
               +dideni*(fbz(i,k)-DDZ(pei))
 #    else
-! Isothermal EOS, ignore grad. pe term
-! Note that, in this case ez and ex are not exactly the electric field,
-! but the ignored pressure gradient term contributes nothing after taking 
-! the curl
+	! Isothermal EOS, ignore grad. pe term
+	! Note that, in this case ez and ex are not exactly the electric field,
+	! but the ignored pressure gradient term contributes nothing after taking 
+	! the curl
     ex(i,k)=vz(i,k)*byi(i,k)-vy(i,k)*bzi(i,k) &
               +dideni*fbx(i,k)
     ey(i,k)=vx(i,k)*bzi(i,k)-vz(i,k)*bxi(i,k) &
@@ -2030,7 +2031,7 @@ subroutine cal_e
 #endif
 
 #if AMBIPOLAR==1
-!=================== Add Ambipolar diffusion term ============
+	!=================== Add Ambipolar diffusion term ============
     ey(i,k)=ey(i,k)-eta_ad*( fbz(i,k)*bxi(i,k) &
                             -fbx(i,k)*bzi(i,k))
 #  if TWO_AND_HALF==1
@@ -2044,10 +2045,10 @@ subroutine cal_e
 
 #if RESISTIVITY==1 
 #  if B_DIFF==0
-!============ Add resistivity ====================================
+	!============ Add resistivity ====================================
     ey(i,k)=ey(i,k)+eta*jyi(i,k)
 #    if TWO_AND_HALF==1 
-! ex and ez are only used in sby
+	! ex and ez are only used in sby
     ez(i,k)=ez(i,k)+eta*jzi(i,k)
     ex(i,k)=ex(i,k)+eta*jxi(i,k)
 #    endif
@@ -2059,10 +2060,10 @@ subroutine cal_e
 
 #  endif
 #elif RESISTIVITY==2
-!====== Isotropic but temperature dependent resistivity =======
+	!====== Isotropic but temperature dependent resistivity =======
     ey(i,k)=ey(i,k)+eta_perp(i,k)*jyi(i,k)
 #  if TWO_AND_HALF==1 
-! ex and ez are only used in sby
+	! ex and ez are only used in sby
     ez(i,k)=ez(i,k)+eta_perp(i,k)*jzi(i,k)
     ex(i,k)=ex(i,k)+eta_perp(i,k)*jxi(i,k)
 #  endif
@@ -2072,7 +2073,7 @@ subroutine cal_e
                                          +jzi(i,k)**2)
 #  endif
 #elif RESISTIVITY==3
-!====== Braginskii parallel and perpendicular resistivity ======       
+	!====== Braginskii parallel and perpendicular resistivity ======       
     bb=sqrt(bxi(i,k)**2+byi(i,k)**2+bzi(i,k)**2)
     xi_e=bb*di/(eta_perp(i,k)*deni(i,k))
     delta=xi_e**4+14.79*xi_e**2+3.77
@@ -2096,7 +2097,7 @@ subroutine cal_e
     end if               
     ey(i,k)=ey(i,k)+e2
 #  if TWO_AND_HALF==1
-! ex and ez are only used in sby
+	! ex and ez are only used in sby
     ez(i,k)=ez(i,k)+e3
     ex(i,k)=ex(i,k)+e1
 #  endif
@@ -2106,7 +2107,7 @@ subroutine cal_e
 #endif
 
 #if HYPER_RESISTIVITY==1
-! Add hyper-resistivity
+	! Add hyper-resistivity
     ey(i,k)=ey(i,k)-etah*(D2DX(jyi)+D2DZ(jyi))
 #  if TWO_AND_HALF==1 
     ex(i,k)=ex(i,k)-etah*(D2DX(jxi)+D2DZ(jxi))
@@ -2118,17 +2119,17 @@ subroutine cal_e
   !$OMP END DO
 
 end subroutine cal_e
-!########################################################################
+	!########################################################################
 subroutine vdept_hdif_coef
-! Calculate velocity dependent hyperdiffusion coefficients
+	! Calculate velocity dependent hyperdiffusion coefficients
   IMPLICIT NONE
   INTEGER :: i, k
 
-! average the flow in mid points.  This is to be used in velocity dependent
-! hyper diffusion
+	! average the flow in mid points.  This is to be used in velocity dependent
+	! hyper diffusion
 
 #if (VDEPT_HDIF==2)
-! Sound speed
+	! Sound speed
   !$OMP DO 
   do k=2,nz-1
     do i=2,nx-1
@@ -2137,7 +2138,7 @@ subroutine vdept_hdif_coef
   end do
   !$OMP END DO
 #elif (VDEPT_HDIF==3)
-! Alfven speed
+	! Alfven speed
   !$OMP DO 
   do k=2,nz-1
     do i=2,nx-1
@@ -2146,7 +2147,7 @@ subroutine vdept_hdif_coef
   end do
   !$OMP END DO
 #elif (VDEPT_HDIF==4)
-! fast magnetosonic wave speed
+	! fast magnetosonic wave speed
   !$OMP DO 
   do k=2,nz-1
     do i=2,nx-1
@@ -2178,5 +2179,5 @@ subroutine vdept_hdif_coef
   end do
   !$OMP END DO 
 end subroutine vdept_hdif_coef 
-!=========================================================================
+	!=========================================================================
 end module equation
