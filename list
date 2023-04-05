@@ -1,0 +1,1 @@
+ls | sed '/RCS/d' | sed '/files/d' > files

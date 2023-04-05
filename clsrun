@@ -1,0 +1,16 @@
+#PBS -N scaling  
+#PBS -A m148
+#PBS -q regular
+#PBS -S /bin/bash 
+#PBS -o mhdcar2d.out
+#PBS -e mhdcar2d.err
+#PBS -l mppwidth=24  
+#PBS -l walltime=00:03:00
+#PBS -V
+
+cd $PBS_O_WORKDIR
+export OMP_NUM_THREADS=6
+export IPM_REPORT=full
+export MPICH_FAST_MEMCPY=1
+aprun -n 4 -d 6 -N 4 -S 1 -ss  ./hmhd2d Daughton
+

@@ -1,0 +1,2768 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+
+Begin optimization report for: ssub._
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (ssub._) [1] ssub.f90(205,14)
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(205,14):remark #34051: REGISTER ALLOCATION : [ssub._] ssub.f90:205
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    0[ reg_null]
+        
+    Routine temporaries
+        Total         :       6
+            Global    :       0
+            Local     :       6
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::BCXPER
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::BCXPER) [2] ssub.f90(222,18)
+  -> (230,14) SSUB::X_EXCHANGE
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(222,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_bcxper_] ssub.f90:222
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    2[ rsi rdi]
+        
+    Routine temporaries
+        Total         :      12
+            Global    :       0
+            Local     :      12
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::X_EXCHANGE
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::X_EXCHANGE) [3] ssub.f90(1771,18)
+  -> (1785,10) SSUB::PROC_ID
+  -> (1788,10) SSUB::PROC_ID
+  -> (1794,10) SSUB::PROC_ID
+  -> (1797,10) SSUB::PROC_ID
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(1791,7)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+   remark #25438: unrolled without remainder by 2  
+
+   LOOP BEGIN at ssub.f90(1791,7)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ssub.f90(1791,7)
+   remark #25399: memcopy generated
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+LOOP END
+
+LOOP BEGIN at ssub.f90(1792,7)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+   remark #25438: unrolled without remainder by 2  
+
+   LOOP BEGIN at ssub.f90(1792,7)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ssub.f90(1792,7)
+   remark #25399: memcopy generated
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+LOOP END
+
+LOOP BEGIN at ssub.f90(1804,7)
+   remark #25045: Fused Loops: ( 1804 1805 )
+
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+
+   LOOP BEGIN at ssub.f90(1804,7)
+      remark #25045: Fused Loops: ( 1804 1805 )
+
+      remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+      remark #25436: completely unrolled by 2  
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1805,7)
+      remark #25046: Loop lost in Fusion 
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ssub.f90(1805,7)
+   remark #25046: Loop lost in Fusion 
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1791,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (32, 0)
+ssub.f90(1792,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (32, 0)
+ssub.f90(1771,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_x_exchange_] ssub.f90:1771
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   21[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm5]
+        
+    Routine temporaries
+        Total         :     157
+            Global    :      45
+            Local     :     112
+        Regenerable   :      63
+        Spilled       :       6
+        
+    Routine stack
+        Variables     :    1664 bytes*
+            Reads     :      12 [4.20e-01 ~ 0.0%]
+            Writes    :      46 [1.26e+02 ~ 11.5%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::PROC_ID
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::PROC_ID) [4] ssub.f90(1919,16)
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1919,16):remark #34051: REGISTER ALLOCATION : [ssub_mp_proc_id_] ssub.f90:1919
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rsi rdi r8-r11]
+        
+    Routine temporaries
+        Total         :      35
+            Global    :       0
+            Local     :      35
+        Regenerable   :       2
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::BCXSYM
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::BCXSYM) [5] ssub.f90(238,18)
+  -> (251,14) SSUB::X_EXCHANGE_RIGHT
+  -> (257,14) SSUB::X_EXCHANGE_LEFT
+  -> (263,14) SSUB::X_EXCHANGE
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(252,9)
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25438: unrolled without remainder by 2  
+LOOP END
+
+LOOP BEGIN at ssub.f90(258,9)
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25438: unrolled without remainder by 2  
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(238,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_bcxsym_] ssub.f90:238
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    8[ rax rdx rcx rbp rsi rdi r8-r9]
+        
+    Routine temporaries
+        Total         :      30
+            Global    :      13
+            Local     :      17
+        Regenerable   :       0
+        Spilled       :       1
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::X_EXCHANGE_RIGHT
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::X_EXCHANGE_RIGHT) [6] ssub.f90(1847,18)
+  -> (1861,10) SSUB::PROC_ID
+  -> (1866,10) SSUB::PROC_ID
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(1864,7)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+   remark #25438: unrolled without remainder by 2  
+
+   LOOP BEGIN at ssub.f90(1864,7)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ssub.f90(1864,7)
+   remark #25399: memcopy generated
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+LOOP END
+
+LOOP BEGIN at ssub.f90(1871,7)
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+
+   LOOP BEGIN at ssub.f90(1871,7)
+      remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+      remark #25436: completely unrolled by 2  
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1864,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (32, 0)
+ssub.f90(1847,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_x_exchange_right_] ssub.f90:1847
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   21[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm5]
+        
+    Routine temporaries
+        Total         :      94
+            Global    :      31
+            Local     :      63
+        Regenerable   :      38
+        Spilled       :       6
+        
+    Routine stack
+        Variables     :     848 bytes*
+            Reads     :       6 [2.10e-01 ~ 0.0%]
+            Writes    :      24 [6.40e+01 ~ 9.5%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::X_EXCHANGE_LEFT
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::X_EXCHANGE_LEFT) [7] ssub.f90(1813,18)
+  -> (1828,10) SSUB::PROC_ID
+  -> (1833,10) SSUB::PROC_ID
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(1831,7)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+   remark #25438: unrolled without remainder by 2  
+
+   LOOP BEGIN at ssub.f90(1831,7)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ssub.f90(1831,7)
+   remark #25399: memcopy generated
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+LOOP END
+
+LOOP BEGIN at ssub.f90(1838,7)
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+
+   LOOP BEGIN at ssub.f90(1838,7)
+      remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+      remark #25436: completely unrolled by 2  
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1831,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (32, 0)
+ssub.f90(1813,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_x_exchange_left_] ssub.f90:1813
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   21[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm5]
+        
+    Routine temporaries
+        Total         :      94
+            Global    :      31
+            Local     :      63
+        Regenerable   :      38
+        Spilled       :       6
+        
+    Routine stack
+        Variables     :     848 bytes*
+            Reads     :       6 [2.10e-01 ~ 0.0%]
+            Writes    :      24 [6.40e+01 ~ 9.5%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::BCXASYM
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::BCXASYM) [8] ssub.f90(270,18)
+  -> (287,14) SSUB::X_EXCHANGE_RIGHT
+  -> (294,14) SSUB::X_EXCHANGE_LEFT
+  -> (301,14) SSUB::X_EXCHANGE
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(288,9)
+   remark #25427: Loop Statements Reordered
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(295,9)
+   remark #25427: Loop Statements Reordered
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(297,11):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(290,11):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(270,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_bcxasym_] ssub.f90:270
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    8[ rax rdx rsi rdi r15 zmm0-zmm2]
+        
+    Routine temporaries
+        Total         :      34
+            Global    :      17
+            Local     :      17
+        Regenerable   :       4
+        Spilled       :       1
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::BCXEXT
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::BCXEXT) [9] ssub.f90(308,18)
+  -> (327,14) SSUB::X_EXCHANGE_RIGHT
+  -> (333,14) SSUB::X_EXCHANGE_LEFT
+  -> (343,14) SSUB::X_EXCHANGE
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(330,19)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(334,9)
+   remark #15301: OUTER LOOP WAS VECTORIZED
+
+   LOOP BEGIN at ssub.f90(335,11)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+      remark #15346: vector dependence: assumed FLOW dependence between DD(Impl_lp+33,K) (335:11) and DD(Impl_lp+32,K) (335:11)
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(335,22):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(329,19):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(330,11):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(308,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_bcxext_] ssub.f90:308
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   17[ rax rdx rcx rsi rdi r8-r12 zmm0-zmm6]
+        
+    Routine temporaries
+        Total         :      71
+            Global    :      23
+            Local     :      48
+        Regenerable   :       1
+        Spilled       :       1
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::BCX
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::BCX) [10] ssub.f90(350,18)
+  -> (394,16) SSUB::X_EXCHANGE_RIGHT
+  -> (437,18) SSUB::DDX
+  -> (438,18) SSUB::D2DX
+  -> (598,16) SSUB::X_EXCHANGE_LEFT
+  -> (645,18) SSUB::DDX
+  -> (646,18) SSUB::D2DX
+  -> (811,14) SSUB::X_EXCHANGE
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(400,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(403,13) ]
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25438: unrolled without remainder by 2  
+LOOP END
+
+LOOP BEGIN at ssub.f90(405,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(408,13) ]
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25438: unrolled without remainder by 2  
+LOOP END
+
+LOOP BEGIN at ssub.f90(410,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(413,13) ]
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25438: unrolled without remainder by 2  
+LOOP END
+
+LOOP BEGIN at ssub.f90(415,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(419,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(423,23)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(424,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(426,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(429,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(431,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(434,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(441,15)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+LOOP END
+
+LOOP BEGIN at ssub.f90(451,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(456,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(468,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(471,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(481,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(485,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(498,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(501,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(514,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(517,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(528,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(532,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(545,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(548,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(566,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(569,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(584,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(588,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(604,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(607,13) ]
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25438: unrolled without remainder by 2  
+LOOP END
+
+LOOP BEGIN at ssub.f90(609,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(612,13) ]
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25438: unrolled without remainder by 2  
+LOOP END
+
+LOOP BEGIN at ssub.f90(614,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(617,13) ]
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25438: unrolled without remainder by 2  
+LOOP END
+
+LOOP BEGIN at ssub.f90(619,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(623,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(625,13)
+<Distributed chunk1>
+   remark #25426: Loop Distributed (2 way) 
+   remark #15301: PARTIAL LOOP WAS VECTORIZED
+
+   LOOP BEGIN at ssub.f90(626,16)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+      remark #15346: vector dependence: assumed FLOW dependence between DD(Impl_lp+33,K) (626:16) and DD(Impl_lp+32,K) (626:16)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ssub.f90(634,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(637,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(639,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(642,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(649,15)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+LOOP END
+
+LOOP BEGIN at ssub.f90(659,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(664,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(677,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(680,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(690,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(694,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(706,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(709,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(722,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(725,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(736,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(740,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(754,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(757,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(776,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(781,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(797,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(803,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(586,23):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(587,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(567,23):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x00000000F }.
+ssub.f90(568,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(546,23):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(547,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(530,23):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(531,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(515,23):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(516,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(499,23):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(500,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(483,25):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(484,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(469,23):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(470,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(452,28):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(455,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(432,27):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(433,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(427,15):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(428,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(422,23):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(423,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(417,24):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(418,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(799,27):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(801,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(777,27):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x00000000F }.
+ssub.f90(779,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(755,26):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(756,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(738,26):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(739,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(723,26):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(724,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(707,26):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(708,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(692,26):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(693,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(678,26):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(679,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(660,31):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(663,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(640,30):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(641,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(635,15):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(636,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(626,27):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(621,27):remark #34069: adjacent sparse (strided) loads seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(622,15):remark #34070: adjacent sparse (strided) stores seem unprofitable to optimize. Details: stride { 272 }, types { F64-V128, F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000007 }.
+ssub.f90(350,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_bcx_] ssub.f90:350
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   31[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm15]
+        
+    Routine temporaries
+        Total         :    1802
+            Global    :     271
+            Local     :    1531
+        Regenerable   :     219
+        Spilled       :      13
+        
+    Routine stack
+        Variables     :     132 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :      46 [3.30e-01 ~ 0.2%]
+        Spills        :      56 bytes*
+            Reads     :      25 [2.49e-01 ~ 0.2%]
+            Writes    :       7 [1.00e+00 ~ 0.7%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::DDX
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::DDX) [11] ssub.f90(1429,21)
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1429,21):remark #34051: REGISTER ALLOCATION : [ssub_mp_ddx_] ssub.f90:1429
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   12[ rax rdx rcx rsi rdi r8-r10 zmm0-zmm3]
+        
+    Routine temporaries
+        Total         :      31
+            Global    :       0
+            Local     :      31
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::D2DX
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::D2DX) [12] ssub.f90(1483,21)
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1483,21):remark #34051: REGISTER ALLOCATION : [ssub_mp_d2dx_] ssub.f90:1483
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   13[ rax rdx rcx rsi rdi r8-r10 zmm0-zmm4]
+        
+    Routine temporaries
+        Total         :      34
+            Global    :       0
+            Local     :      34
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::BCZPER
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::BCZPER) [13] ssub.f90(818,18)
+  -> (828,14) SSUB::Z_EXCHANGE
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(818,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_bczper_] ssub.f90:818
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    2[ rsi rdi]
+        
+    Routine temporaries
+        Total         :      12
+            Global    :       0
+            Local     :      12
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::Z_EXCHANGE
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::Z_EXCHANGE) [14] ssub.f90(1669,18)
+  -> (1683,10) SSUB::PROC_ID
+  -> (1685,10) SSUB::PROC_ID
+  -> (1691,10) SSUB::PROC_ID
+  -> (1694,10) SSUB::PROC_ID
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(1688,7)
+   remark #15306: loop was not vectorized: inner loop was transformed to memset or memcpy
+
+   LOOP BEGIN at ssub.f90(1688,7)
+      remark #25399: memcopy generated
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ssub.f90(1688,7)
+   remark #25399: memcopy generated
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+LOOP END
+
+LOOP BEGIN at ssub.f90(1689,7)
+   remark #15306: loop was not vectorized: inner loop was transformed to memset or memcpy
+
+   LOOP BEGIN at ssub.f90(1689,7)
+      remark #25399: memcopy generated
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ssub.f90(1689,7)
+   remark #25399: memcopy generated
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+LOOP END
+
+LOOP BEGIN at ssub.f90(1699,7)
+   remark #15306: loop was not vectorized: inner loop was transformed to memset or memcpy
+
+   LOOP BEGIN at ssub.f90(1699,7)
+      remark #25399: memcopy generated
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ssub.f90(1700,7)
+   remark #15306: loop was not vectorized: inner loop was transformed to memset or memcpy
+
+   LOOP BEGIN at ssub.f90(1700,7)
+      remark #25399: memcopy generated
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1688,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (16, 0)
+ssub.f90(1688,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (32, 0)
+ssub.f90(1689,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (16, 0)
+ssub.f90(1689,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (32, 0)
+ssub.f90(1699,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+ssub.f90(1700,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+ssub.f90(1669,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_z_exchange_] ssub.f90:1669
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   18[ rax rdx rcx rbx rbp rsi rdi r8-r12 r14-r15 zmm0-zmm3]
+        
+    Routine temporaries
+        Total         :     188
+            Global    :      52
+            Local     :     136
+        Regenerable   :      63
+        Spilled       :       5
+        
+    Routine stack
+        Variables     :    1408 bytes*
+            Reads     :      12 [3.40e-01 ~ 0.2%]
+            Writes    :      42 [4.20e+01 ~ 22.4%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::BCZSYM
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::BCZSYM) [15] ssub.f90(835,18)
+  -> (850,14) SSUB::Z_EXCHANGE_RIGHT
+  -> (856,14) SSUB::Z_EXCHANGE_LEFT
+  -> (862,14) SSUB::Z_EXCHANGE
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(851,9)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(851,9)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(851,9)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(857,9)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(857,9)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(857,9)
+<Remainder loop for vectorization>
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(835,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_bczsym_] ssub.f90:835
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    8[ rax rdx rcx rsi rdi r12 zmm0-zmm1]
+        
+    Routine temporaries
+        Total         :      50
+            Global    :      15
+            Local     :      35
+        Regenerable   :       0
+        Spilled       :       1
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::Z_EXCHANGE_RIGHT
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::Z_EXCHANGE_RIGHT) [16] ssub.f90(1739,18)
+  -> (1753,10) SSUB::PROC_ID
+  -> (1758,10) SSUB::PROC_ID
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(1756,7)
+   remark #15306: loop was not vectorized: inner loop was transformed to memset or memcpy
+
+   LOOP BEGIN at ssub.f90(1756,7)
+      remark #25399: memcopy generated
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ssub.f90(1756,7)
+   remark #25399: memcopy generated
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+LOOP END
+
+LOOP BEGIN at ssub.f90(1763,7)
+   remark #15306: loop was not vectorized: inner loop was transformed to memset or memcpy
+
+   LOOP BEGIN at ssub.f90(1763,7)
+      remark #25399: memcopy generated
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1756,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (16, 0)
+ssub.f90(1756,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (32, 0)
+ssub.f90(1763,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+ssub.f90(1739,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_z_exchange_right_] ssub.f90:1739
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   18[ rax rdx rcx rbp rsi rdi r8-r15 zmm0-zmm3]
+        
+    Routine temporaries
+        Total         :     108
+            Global    :      33
+            Local     :      75
+        Regenerable   :      38
+        Spilled       :       5
+        
+    Routine stack
+        Variables     :     720 bytes*
+            Reads     :       6 [1.70e-01 ~ 0.1%]
+            Writes    :      22 [2.20e+01 ~ 19.2%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::Z_EXCHANGE_LEFT
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::Z_EXCHANGE_LEFT) [17] ssub.f90(1707,18)
+  -> (1722,10) SSUB::PROC_ID
+  -> (1726,10) SSUB::PROC_ID
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(1725,7)
+   remark #15306: loop was not vectorized: inner loop was transformed to memset or memcpy
+
+   LOOP BEGIN at ssub.f90(1725,7)
+      remark #25399: memcopy generated
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ssub.f90(1725,7)
+   remark #25399: memcopy generated
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+LOOP END
+
+LOOP BEGIN at ssub.f90(1731,7)
+   remark #15306: loop was not vectorized: inner loop was transformed to memset or memcpy
+
+   LOOP BEGIN at ssub.f90(1731,7)
+      remark #25399: memcopy generated
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1725,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (16, 0)
+ssub.f90(1725,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (32, 0)
+ssub.f90(1731,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (16, 0), and destination (alignment, offset): (1, 0)
+ssub.f90(1707,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_z_exchange_left_] ssub.f90:1707
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   18[ rax rdx rcx rbp rsi rdi r8-r15 zmm0-zmm3]
+        
+    Routine temporaries
+        Total         :     108
+            Global    :      33
+            Local     :      75
+        Regenerable   :      38
+        Spilled       :       5
+        
+    Routine stack
+        Variables     :     720 bytes*
+            Reads     :       6 [1.70e-01 ~ 0.1%]
+            Writes    :      22 [2.20e+01 ~ 19.2%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::BCZASYM
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::BCZASYM) [18] ssub.f90(869,18)
+  -> (885,14) SSUB::Z_EXCHANGE_RIGHT
+  -> (892,14) SSUB::Z_EXCHANGE_LEFT
+  -> (899,14) SSUB::Z_EXCHANGE
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(886,9)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(886,9)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(886,9)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(886,9)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(893,9)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(893,9)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(893,9)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(893,9)
+<Remainder loop for vectorization>
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(869,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_bczasym_] ssub.f90:869
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   17[ rax rdx rcx rbx rsi rdi r8-r9 zmm0-zmm8]
+        
+    Routine temporaries
+        Total         :     116
+            Global    :      29
+            Local     :      87
+        Regenerable   :       4
+        Spilled       :       1
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::BCZEXT
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::BCZEXT) [19] ssub.f90(907,18)
+  -> (924,14) SSUB::Z_EXCHANGE_RIGHT
+  -> (930,14) SSUB::Z_EXCHANGE_LEFT
+  -> (940,14) SSUB::Z_EXCHANGE
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(927,19)
+<Peeled loop for vectorization>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at ssub.f90(927,19)
+   remark #15300: LOOP WAS VECTORIZED
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at ssub.f90(927,19)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(935,22)
+<Peeled loop for vectorization>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at ssub.f90(935,22)
+   remark #15300: LOOP WAS VECTORIZED
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at ssub.f90(935,22)
+<Remainder loop for vectorization>
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(907,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_bczext_] ssub.f90:907
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   16[ rax rdx rcx rbp rsi rdi zmm0-zmm9]
+        
+    Routine temporaries
+        Total         :     126
+            Global    :      41
+            Local     :      85
+        Regenerable   :       0
+        Spilled       :       1
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::BCZ
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::BCZ) [20] ssub.f90(947,18)
+  -> (989,16) SSUB::Z_EXCHANGE_RIGHT
+  -> (1032,18) SSUB::DDZ
+  -> (1033,18) SSUB::D2DZ
+  -> (1198,16) SSUB::Z_EXCHANGE_LEFT
+  -> (1245,18) SSUB::DDZ
+  -> (1246,18) SSUB::D2DZ
+  -> (1421,14) SSUB::Z_EXCHANGE
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(995,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(995,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(998,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(995,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1000,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1000,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1003,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1000,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1005,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1005,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1008,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1005,13)
+<Remainder loop for vectorization>
+   remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+LOOP END
+
+LOOP BEGIN at ssub.f90(1010,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1010,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1014,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1010,13)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1010,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1018,23)
+<Peeled loop for vectorization>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at ssub.f90(1018,23)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1019,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at ssub.f90(1018,23)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1021,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1021,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1024,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1021,13)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1021,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1026,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1026,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1029,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1026,13)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1026,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1036,15)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+LOOP END
+
+LOOP BEGIN at ssub.f90(1046,13)
+<Peeled loop for vectorization>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at ssub.f90(1046,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1051,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at ssub.f90(1046,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1065,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1065,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1068,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1065,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1078,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1078,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1082,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1078,13)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1078,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1095,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1095,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1098,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1095,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1111,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1111,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1114,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1111,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1125,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1125,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1129,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1125,13)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1125,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1144,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1144,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1147,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1144,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1165,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1165,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1168,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1165,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1183,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1183,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1187,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1183,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1204,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1204,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1207,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1204,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1209,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1209,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1212,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1209,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1214,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1214,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1217,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1214,13)
+<Remainder loop for vectorization>
+   remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+LOOP END
+
+LOOP BEGIN at ssub.f90(1219,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1219,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1223,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1219,13)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1219,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1229,26)
+<Peeled loop for vectorization>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at ssub.f90(1229,26)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1232,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at ssub.f90(1229,26)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1234,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1234,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1237,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1234,13)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1234,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1239,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1239,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1242,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1239,13)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1239,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1249,15)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+LOOP END
+
+LOOP BEGIN at ssub.f90(1259,13)
+<Peeled loop for vectorization>
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at ssub.f90(1259,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1264,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+   remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+LOOP END
+
+LOOP BEGIN at ssub.f90(1259,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1279,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1279,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1282,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1279,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1292,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1292,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1296,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1292,13)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1292,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1310,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1310,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1313,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1310,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1328,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1328,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1331,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1328,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1343,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1343,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1347,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1343,13)
+<Remainder loop for vectorization>
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1343,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1362,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1362,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1365,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1362,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1386,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1386,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1391,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1386,13)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1406,13)
+<Peeled loop for vectorization>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1406,13)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1412,13) ]
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1406,13)
+<Remainder loop for vectorization>
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(947,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_bcz_] ssub.f90:947
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   30[ rax rdx rcx rbx rbp rsi rdi r8-r10 r12-r15 zmm0-zmm15]
+        
+    Routine temporaries
+        Total         :    2874
+            Global    :     486
+            Local     :    2388
+        Regenerable   :     235
+        Spilled       :      23
+        
+    Routine stack
+        Variables     :     132 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :      46 [3.30e-01 ~ 0.1%]
+        Spills        :     136 bytes*
+            Reads     :      35 [2.49e-01 ~ 0.1%]
+            Writes    :      17 [1.00e+00 ~ 0.4%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::DDZ
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::DDZ) [21] ssub.f90(1442,21)
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1442,21):remark #34051: REGISTER ALLOCATION : [ssub_mp_ddz_] ssub.f90:1442
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   12[ rax rdx rcx rsi rdi r8-r10 zmm0-zmm3]
+        
+    Routine temporaries
+        Total         :      31
+            Global    :       0
+            Local     :      31
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::D2DZ
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::D2DZ) [22] ssub.f90(1498,21)
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1498,21):remark #34051: REGISTER ALLOCATION : [ssub_mp_d2dz_] ssub.f90:1498
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   13[ rax rdx rcx rsi rdi r8-r10 zmm0-zmm4]
+        
+    Routine temporaries
+        Total         :      34
+            Global    :       0
+            Local     :      34
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::POISSON
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::POISSON) [23] ssub.f90(1455,21)
+  -> (1461,15) SSUB::DDX
+  -> (1461,28) SSUB::DDZ
+  -> (1462,15) SSUB::DDX
+  -> (1462,28) SSUB::DDZ
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1455,21):remark #34051: REGISTER ALLOCATION : [ssub_mp_poisson_] ssub.f90:1455
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   11[ rdx rcx rbx rbp rsi rdi r14-r15 zmm0-zmm2]
+        
+    Routine temporaries
+        Total         :      38
+            Global    :      17
+            Local     :      21
+        Regenerable   :       0
+        Spilled       :       7
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      24 bytes*
+            Reads     :       3 [3.00e+00 ~ 5.9%]
+            Writes    :       3 [3.00e+00 ~ 5.9%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::BGRAD
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::BGRAD) [24] ssub.f90(1469,21)
+  -> (1475,21) SSUB::DDX
+  -> (1476,21) SSUB::DDZ
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1469,21):remark #34051: REGISTER ALLOCATION : [ssub_mp_bgrad_] ssub.f90:1469
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   13[ rax rdx rcx rbx rbp rsi rdi r8 r12 r14-r15 zmm0-zmm1]
+        
+    Routine temporaries
+        Total         :      38
+            Global    :      14
+            Local     :      24
+        Regenerable   :       0
+        Spilled       :       6
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       8 bytes*
+            Reads     :       1 [1.00e+00 ~ 1.9%]
+            Writes    :       1 [1.00e+00 ~ 1.9%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::DEL2
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::DEL2) [25] ssub.f90(1512,21)
+  -> (1518,12) SSUB::D2DX
+  -> (1518,25) SSUB::D2DZ
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1512,21):remark #34051: REGISTER ALLOCATION : [ssub_mp_del2_] ssub.f90:1512
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    7[ rdx rbx rbp rsi rdi r15 zmm0]
+        
+    Routine temporaries
+        Total         :      24
+            Global    :      12
+            Local     :      12
+        Regenerable   :       0
+        Spilled       :       4
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       8 bytes*
+            Reads     :       1 [1.00e+00 ~ 3.3%]
+            Writes    :       1 [1.00e+00 ~ 3.3%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::GAUSS
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::GAUSS) [26] ssub.f90(1524,21)
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1524,21):remark #34051: REGISTER ALLOCATION : [ssub_mp_gauss_] ssub.f90:1524
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   14[ rax rdx rcx rsi rdi r8-r11 r13 zmm0-zmm3]
+        
+    Routine temporaries
+        Total         :      40
+            Global    :       8
+            Local     :      32
+        Regenerable   :       1
+        Spilled       :       1
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::POLIN2
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::POLIN2) [27] ssub.f90(1582,18)
+  -> (1597,9) SSUB::ASSERT_EQ2
+  -> (1598,12) SSUB::ASSERT_EQ2
+  -> (1601,14) SSUB::POLINT
+  -> (1603,12) SSUB::POLINT
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(1599,7)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ssub.f90(1600,9)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1600,9)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1582,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_polin2_] ssub.f90:1582
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   14[ rax rdx rcx rbx rsi rdi r8-r10 r12-r15 zmm0]
+        
+    Routine temporaries
+        Total         :      93
+            Global    :      40
+            Local     :      53
+        Regenerable   :      24
+        Spilled       :      18
+        
+    Routine stack
+        Variables     :     160 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :      20 [5.55e+01 ~ 8.0%]
+        Spills        :     104 bytes*
+            Reads     :      17 [5.53e+01 ~ 7.9%]
+            Writes    :      13 [1.29e+01 ~ 1.8%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::POLINT
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::POLINT) [28] ssub.f90(1541,18)
+  -> (1551,9) SSUB::ASSERT_EQ2
+  -> (1555,10) SSUB::IMINLOC
+  -> (1561,9) SSUB::NRERROR
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(1552,7)
+<Multiversioned v1>
+   remark #25233: Loop multiversioned for stride tests on Assumed shape arrays
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1552,7)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1552,7)
+<Multiversioned v2>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1552,7)
+<Remainder loop for vectorization, Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1553,7)
+<Multiversioned v1>
+   remark #25233: Loop multiversioned for stride tests on Assumed shape arrays
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1553,7)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1553,7)
+<Multiversioned v2>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1553,7)
+<Remainder loop for vectorization, Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1554,7)
+<Multiversioned v1>
+   remark #25233: Loop multiversioned for stride tests on Assumed shape arrays
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1554,7)
+<Remainder loop for vectorization, Multiversioned v1>
+   remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+LOOP END
+
+LOOP BEGIN at ssub.f90(1554,7)
+<Multiversioned v2>
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1554,7)
+<Remainder loop for vectorization, Multiversioned v2>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1555,10)
+<Multiversioned v1>
+   remark #25233: Loop multiversioned for stride tests on Assumed shape arrays
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1555,10)
+<Remainder loop for vectorization, Multiversioned v1>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1555,10)
+<Multiversioned v2>
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25439: unrolled with remainder by 8  
+LOOP END
+
+LOOP BEGIN at ssub.f90(1555,10)
+<Remainder, Multiversioned v2>
+   remark #25436: completely unrolled by 7  
+LOOP END
+
+LOOP BEGIN at ssub.f90(1558,7)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ssub.f90(1559,9)
+   <Distributed chunk1>
+      remark #25045: Fused Loops: ( 1559 1560 )
+
+      remark #25426: Loop Distributed (2 way) 
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1560,13)
+      remark #25046: Loop lost in Fusion 
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1559,9)
+   <Remainder loop for vectorization, Distributed chunk1>
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1559,9)
+   <Distributed chunk2>
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1559,9)
+   <Remainder loop for vectorization, Distributed chunk2>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1559,9)
+   <Remainder loop for vectorization, Distributed chunk2>
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1562,9)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1562,9)
+   <Remainder loop for vectorization>
+      remark #15301: REMAINDER LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1562,9)
+   <Remainder loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1563,9)
+      remark #25045: Fused Loops: ( 1563 1564 )
+
+      remark #15301: FUSED LOOP WAS VECTORIZED
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 4
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1564,9)
+      remark #25046: Loop lost in Fusion 
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1563,9)
+   <Remainder loop for vectorization>
+      remark #15335: remainder loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1541,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_polint_] ssub.f90:1541
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   27[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm12]
+        
+    Routine temporaries
+        Total         :     385
+            Global    :     137
+            Local     :     248
+        Regenerable   :      20
+        Spilled       :      35
+        
+    Routine stack
+        Variables     :      80 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :      10 [1.00e+01 ~ 0.2%]
+        Spills        :     232 bytes*
+            Reads     :      56 [1.10e+02 ~ 2.2%]
+            Writes    :      33 [2.58e+01 ~ 0.5%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::IMINLOC
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::IMINLOC) [29] ssub.f90(1653,16)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(1658,12)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1658,12)
+<Remainder loop for vectorization>
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1653,16):remark #34051: REGISTER ALLOCATION : [ssub_mp_iminloc_] ssub.f90:1653
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   25[ rax rdx rcx rsi rdi r8-r11 zmm0-zmm15]
+        
+    Routine temporaries
+        Total         :      94
+            Global    :      22
+            Local     :      72
+        Regenerable   :       5
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::ASSERT_EQ2
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::ASSERT_EQ2) [30] ssub.f90(1640,16)
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1640,16):remark #34051: REGISTER ALLOCATION : [ssub_mp_assert_eq2_] ssub.f90:1640
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rbx rbp rsi rdi r8 r15]
+        
+    Routine temporaries
+        Total         :      39
+            Global    :      11
+            Local     :      28
+        Regenerable   :      23
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :      96 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       5 [2.50e-01 ~ 0.9%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::POLINT4P
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::POLINT4P) [31] ssub.f90(1607,18)
+  -> (1616,9) SSUB::ASSERT_EQ2
+  -> (1620,10) SSUB::IMINLOC
+  -> (1626,12) SSUB::NRERROR
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(1617,7)
+   remark #25045: Fused Loops: ( 1617 1618 1619 1620 )
+
+   remark #15301: FUSED LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1618,7)
+   remark #25046: Loop lost in Fusion 
+LOOP END
+
+LOOP BEGIN at ssub.f90(1619,7)
+   remark #25046: Loop lost in Fusion 
+LOOP END
+
+LOOP BEGIN at ssub.f90(1620,10)
+   remark #25046: Loop lost in Fusion 
+LOOP END
+
+LOOP BEGIN at ssub.f90(1623,7)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ssub.f90(1624,9)
+   <Distributed chunk1>
+      remark #25045: Fused Loops: ( 1624 1625 )
+
+      remark #25426: Loop Distributed (2 way) 
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1625,13)
+      remark #25046: Loop lost in Fusion 
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1624,9)
+   <Remainder loop for vectorization, Distributed chunk1>
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1624,9)
+   <Distributed chunk2>
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1624,9)
+   <Remainder loop for vectorization, Distributed chunk2>
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1627,9)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1627,9)
+   <Remainder loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1628,9)
+      remark #25045: Fused Loops: ( 1628 1629 )
+
+      remark #15301: FUSED LOOP WAS VECTORIZED
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1629,9)
+      remark #25046: Loop lost in Fusion 
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1628,9)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1607,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_polint4p_] ssub.f90:1607
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   24[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm8]
+        
+    Routine temporaries
+        Total         :     149
+            Global    :      60
+            Local     :      89
+        Regenerable   :      35
+        Spilled       :      16
+        
+    Routine stack
+        Variables     :     104 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :      10 [1.00e+01 ~ 0.4%]
+        Spills        :      88 bytes*
+            Reads     :      18 [5.15e+01 ~ 2.2%]
+            Writes    :      16 [4.30e+01 ~ 1.8%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::INTEGRATE
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::INTEGRATE) [32] ssub.f90(1879,16)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at ssub.f90(1889,7)
+   remark #15300: LOOP WAS VECTORIZED
+LOOP END
+
+LOOP BEGIN at ssub.f90(1889,7)
+<Alternate Alignment Vectorized Loop>
+LOOP END
+
+LOOP BEGIN at ssub.f90(1893,7)
+   remark #25045: Fused Loops: ( 1893 1899 )
+
+   remark #25461: Imperfect Loop Unroll-Jammed by 2   (pre-vector) 
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at ssub.f90(1901,9)
+      remark #15300: LOOP WAS VECTORIZED
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+
+   LOOP BEGIN at ssub.f90(1901,9)
+   <Alternate Alignment Vectorized Loop>
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 1
+   LOOP END
+LOOP END
+
+LOOP BEGIN at ssub.f90(1899,7)
+   remark #25084: Preprocess Loopnests: Moving Out Store    [ ssub.f90(1904,9) ]
+   remark #25046: Loop lost in Fusion 
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1890,9):remark #34055: adjacent dense (unit-strided stencil) loads are not optimized. Details: stride { 8 }, step { 8 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(1890,9):remark #34055: adjacent dense (unit-strided stencil) loads are not optimized. Details: stride { 8 }, step { 8 }, types { F64-V128, F64-V128 }, number of elements { 2 }, select mask { 0x000000003 }.
+ssub.f90(1879,16):remark #34051: REGISTER ALLOCATION : [ssub_mp_integrate_] ssub.f90:1879
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   18[ rax rdx rcx rbx rbp rsi rdi r8-r11 zmm0-zmm6]
+        
+    Routine temporaries
+        Total         :      75
+            Global    :      35
+            Local     :      40
+        Regenerable   :       9
+        Spilled       :       2
+        
+    Routine stack
+        Variables     :       8 bytes*
+            Reads     :       1 [5.97e-01 ~ 0.0%]
+            Writes    :       1 [5.97e-01 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: SSUB::NRERROR
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (SSUB::NRERROR) [33] ssub.f90(1662,18)
+
+
+    Report from: Code generation optimizations [cg]
+
+ssub.f90(1662,18):remark #34051: REGISTER ALLOCATION : [ssub_mp_nrerror_] ssub.f90:1662
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rbx rsi rdi r8-r9 r15]
+        
+    Routine temporaries
+        Total         :      33
+            Global    :      10
+            Local     :      23
+        Regenerable   :      23
+        Spilled       :       2
+        
+    Routine stack
+        Variables     :      96 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       5 [5.00e+00 ~ 11.6%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================

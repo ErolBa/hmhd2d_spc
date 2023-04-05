@@ -1,0 +1,7 @@
+args=("$@")
+find . -name "${args[0]}.*"  -print > filelist
+echo 'tar .....'
+tar -cvzf ${args[0]}.tar.gz --files-from filelist
+echo 'erase source files ......'
+cat filelist | xargs rm -v 
+rm filelist 

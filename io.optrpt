@@ -1,0 +1,1043 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+
+Begin optimization report for: io._
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (io._) [1] io.f90(206,14)
+
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(206,14):remark #34051: REGISTER ALLOCATION : [io._] io.f90:206
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    0[ reg_null]
+        
+    Routine temporaries
+        Total         :       6
+            Global    :       0
+            Local     :       6
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::WRLINS
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::WRLINS) [2] io.f90(212,18)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at io.f90(228,7)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(212,18):remark #34051: REGISTER ALLOCATION : [io_mp_wrlins_] io.f90:212
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   14[ rax rdx rcx rbx rbp rsi rdi r8-r10 r12-r15]
+        
+    Routine temporaries
+        Total         :      44
+            Global    :      22
+            Local     :      22
+        Regenerable   :      21
+        Spilled       :       7
+        
+    Routine stack
+        Variables     :     112 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       8 [3.05e+01 ~ 13.3%]
+        Spills        :      56 bytes*
+            Reads     :       7 [1.13e+01 ~ 4.9%]
+            Writes    :       7 [6.85e+00 ~ 3.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::RDRSTRT
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::RDRSTRT) [3] io.f90(239,18)
+
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(239,18):remark #34051: REGISTER ALLOCATION : [io_mp_rdrstrt_] io.f90:239
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   14[ rax rdx rcx rbx rbp rsi rdi r8-r10 r12-r15]
+        
+    Routine temporaries
+        Total         :     492
+            Global    :      28
+            Local     :     464
+        Regenerable   :     381
+        Spilled       :       6
+        
+    Routine stack
+        Variables     :     776 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :     129 [9.78e+01 ~ 20.9%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::FFOPEN
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::FFOPEN) [4] io.f90(437,18)
+
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(437,18):remark #34051: REGISTER ALLOCATION : [io_mp_ffopen_] io.f90:437
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   12[ rax rdx rcx rbx rbp rsi rdi r8 r12-r15]
+        
+    Routine temporaries
+        Total         :     208
+            Global    :      27
+            Local     :     181
+        Regenerable   :     158
+        Spilled       :       6
+        
+    Routine stack
+        Variables     :     344 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :      47 [1.87e+01 ~ 14.9%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::RDLIN
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::RDLIN) [5] io.f90(493,16)
+
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(493,16):remark #34051: REGISTER ALLOCATION : [io_mp_rdlin_] io.f90:493
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    7[ rax rdx rcx rsi rdi r8-r9]
+        
+    Routine temporaries
+        Total         :      29
+            Global    :       9
+            Local     :      20
+        Regenerable   :      11
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :      80 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       3 [3.00e+00 ~ 9.8%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::DIAGS
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::DIAGS) [6] io.f90(1774,18)
+  -> (1796,26) IO::PDUMP
+
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(1774,18):remark #34051: REGISTER ALLOCATION : [io_mp_diags_] io.f90:1774
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    1[ rax]
+        
+    Routine temporaries
+        Total         :       8
+            Global    :       6
+            Local     :       2
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::HISTCHEK
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::HISTCHEK) [7] io.f90(1802,18)
+  -> (1853,25) IO::DUMPHIST
+
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(1802,18):remark #34051: REGISTER ALLOCATION : [io_mp_histchek_] io.f90:1802
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rbx rbp zmm0-zmm3]
+        
+    Routine temporaries
+        Total         :      49
+            Global    :      26
+            Local     :      23
+        Regenerable   :       4
+        Spilled       :       2
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::WRRSFILE
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::WRRSFILE) [8] io.f90(341,18)
+
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(341,18):remark #34051: REGISTER ALLOCATION : [io_mp_wrrsfile_] io.f90:341
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r10 r12-r15 zmm0]
+        
+    Routine temporaries
+        Total         :     491
+            Global    :      29
+            Local     :     462
+        Regenerable   :     364
+        Spilled       :       7
+        
+    Routine stack
+        Variables     :     728 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :     123 [9.15e+01 ~ 19.8%]
+        Spills        :       8 bytes*
+            Reads     :       1 [4.00e-01 ~ 0.1%]
+            Writes    :       1 [4.00e-01 ~ 0.1%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::DUMPHISTHDF
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::DUMPHISTHDF) [9] io.f90(1688,18)
+  -> (1724,14) IO::WRRSFILE
+  -> (1764,14) IO::WRRSFILE
+
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(1688,18):remark #34051: REGISTER ALLOCATION : [io_mp_dumphisthdf_] io.f90:1688
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   13[ rax rdx rcx rbx rsi rdi r8-r10 r12-r15]
+        
+    Routine temporaries
+        Total         :     299
+            Global    :      39
+            Local     :     260
+        Regenerable   :     233
+        Spilled       :       6
+        
+    Routine stack
+        Variables     :     444 bytes*
+            Reads     :       2 [2.00e+00 ~ 0.8%]
+            Writes    :      57 [2.90e+01 ~ 11.8%]
+        Spills        :       8 bytes*
+            Reads     :       1 [5.00e-01 ~ 0.2%]
+            Writes    :       1 [5.00e-01 ~ 0.2%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::DUMPHIST
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::DUMPHIST) [10] io.f90(1632,18)
+  -> (1672,12) IO::DUMPHISTHDF
+
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(1665,7):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (8, 0), and destination (alignment, offset): (32, 0)
+io.f90(1632,18):remark #34051: REGISTER ALLOCATION : [io_mp_dumphist_] io.f90:1632
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r10 r12 zmm0-zmm3]
+        
+    Routine temporaries
+        Total         :     141
+            Global    :      20
+            Local     :     121
+        Regenerable   :      98
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :     212 bytes*
+            Reads     :       1 [3.36e-01 ~ 0.3%]
+            Writes    :      26 [1.13e+01 ~ 10.8%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::PDUMP
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::PDUMP) [11] io.f90(599,18)
+  -> (789,12) IO::PDUMP:WR2D
+  -> (791,12) IO::PDUMP:WR2D
+  -> (793,12) IO::PDUMP:WR2D
+  -> (795,12) IO::PDUMP:WR2D
+  -> (797,12) IO::PDUMP:WR2D
+  -> (799,12) IO::PDUMP:WR2D
+  -> (801,12) IO::PDUMP:WR2D
+  -> (803,12) IO::PDUMP:WR2D
+  -> (805,12) IO::PDUMP:WR2D
+  -> (807,12) IO::PDUMP:WR2D
+  -> (809,12) IO::PDUMP:WR2D
+  -> (811,12) IO::PDUMP:WR2D
+  -> (813,12) IO::PDUMP:WR2D
+  -> (815,12) IO::PDUMP:WR2D
+  -> (817,12) IO::PDUMP:WR2D
+  -> (819,12) IO::PDUMP:WR2D
+  -> (821,12) IO::PDUMP:WR2D
+  -> (823,12) IO::PDUMP:WR2D
+  -> (825,12) IO::PDUMP:WR2D
+  -> (827,12) IO::PDUMP:WR2D
+  -> (829,12) IO::PDUMP:WR2D
+  -> (831,12) IO::PDUMP:WR2D
+  -> (833,12) IO::PDUMP:WR2D
+  -> (835,12) IO::PDUMP:WR2D
+  -> (837,12) IO::PDUMP:WR2D
+  -> (849,14) IO::PDUMP:WR2D
+  -> (862,14) IO::PDUMP:WR2D
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at io.f90(845,11)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   remark #15346: vector dependence: assumed OUTPUT dependence between I (844:9) and I (845:33)
+
+   LOOP BEGIN at io.f90(844,9)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   LOOP END
+LOOP END
+
+LOOP BEGIN at io.f90(858,11)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   remark #15346: vector dependence: assumed OUTPUT dependence between I (857:9) and I (858:33)
+
+   LOOP BEGIN at io.f90(857,9)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+   LOOP END
+LOOP END
+
+LOOP BEGIN at io.f90(964,9)
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(599,18):remark #34051: REGISTER ALLOCATION : [io_mp_pdump_] io.f90:599
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   17[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm1]
+        
+    Routine temporaries
+        Total         :    2343
+            Global    :     228
+            Local     :    2115
+        Regenerable   :     613
+        Spilled       :      30
+        
+    Routine stack
+        Variables     :    4332 bytes*
+            Reads     :      91 [1.56e+01 ~ 0.0%]
+            Writes    :     440 [2.17e+03 ~ 6.3%]
+        Spills        :     192 bytes*
+            Reads     :      39 [1.98e+03 ~ 5.7%]
+            Writes    :      31 [1.98e+03 ~ 5.7%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::PDUMP:WR2D
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::PDUMP:WR2D) [12] io.f90(1011,18)
+  -> INLINE: (1038,16) IO::PDUMP:WR2DHDF
+  -> INLINE: (1040,16) IO::PDUMP:WR2DHDF_SEQ
+  -> (1044,16) IO::PDUMP:WR2DHDF_BIN
+  -> (1046,16) IO::PDUMP:WR2DHDF_BIN_SEQ
+  -> (1050,16) IO::PDUMP:WR2DHDF_BIN
+  -> (1052,16) IO::PDUMP:WR2DHDF_BIN_SEQ
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at io.f90(1079,9) inlined into io.f90(1658,16)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at io.f90(1079,9) inlined into io.f90(1658,16)
+   <Peeled loop for vectorization>
+   LOOP END
+
+   LOOP BEGIN at io.f90(1079,9) inlined into io.f90(1658,16)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+
+   LOOP BEGIN at io.f90(1079,9) inlined into io.f90(1658,16)
+   <Alternate Alignment Vectorized Loop>
+   LOOP END
+
+   LOOP BEGIN at io.f90(1079,9) inlined into io.f90(1658,16)
+   <Remainder loop for vectorization>
+   LOOP END
+LOOP END
+
+LOOP BEGIN at io.f90(1081,9) inlined into io.f90(1658,16)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at io.f90(1081,9) inlined into io.f90(1658,16)
+      remark #25399: memcopy generated
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at io.f90(1081,9) inlined into io.f90(1658,16)
+      <Peeled loop for vectorization>
+      LOOP END
+
+      LOOP BEGIN at io.f90(1081,9) inlined into io.f90(1658,16)
+         remark #15300: LOOP WAS VECTORIZED
+      LOOP END
+
+      LOOP BEGIN at io.f90(1081,9) inlined into io.f90(1658,16)
+      <Alternate Alignment Vectorized Loop>
+      LOOP END
+
+      LOOP BEGIN at io.f90(1081,9) inlined into io.f90(1658,16)
+      <Remainder loop for vectorization>
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at io.f90(1154,12) inlined into io.f90(1660,16)
+   remark #25399: memcopy generated
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+LOOP END
+
+LOOP BEGIN at io.f90(1162,9) inlined into io.f90(1660,16)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at io.f90(1163,11) inlined into io.f90(1660,16)
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at io.f90(1165,13) inlined into io.f90(1660,16)
+         remark #25399: memcopy generated
+         remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+      LOOP END
+
+      LOOP BEGIN at io.f90(1165,13) inlined into io.f90(1660,16)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization. First dependence is shown below. Use level 5 report for details
+         remark #15346: vector dependence: assumed ANTI dependence between at (1165:13) and at (1165:13)
+
+         LOOP BEGIN at io.f90(1165,13) inlined into io.f90(1660,16)
+            remark #25399: memcopy generated
+            remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at io.f90(1200,15) inlined into io.f90(1660,16)
+         remark #15542: loop was not vectorized: inner loop was already vectorized
+
+         LOOP BEGIN at io.f90(1200,15) inlined into io.f90(1660,16)
+         <Peeled loop for vectorization>
+         LOOP END
+
+         LOOP BEGIN at io.f90(1200,15) inlined into io.f90(1660,16)
+            remark #15300: LOOP WAS VECTORIZED
+         LOOP END
+
+         LOOP BEGIN at io.f90(1200,15) inlined into io.f90(1660,16)
+         <Alternate Alignment Vectorized Loop>
+         LOOP END
+
+         LOOP BEGIN at io.f90(1200,15) inlined into io.f90(1660,16)
+         <Remainder loop for vectorization>
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at io.f90(1202,15) inlined into io.f90(1660,16)
+         remark #15542: loop was not vectorized: inner loop was already vectorized
+
+         LOOP BEGIN at io.f90(1202,15) inlined into io.f90(1660,16)
+            remark #25399: memcopy generated
+            remark #15542: loop was not vectorized: inner loop was already vectorized
+
+            LOOP BEGIN at io.f90(1202,15) inlined into io.f90(1660,16)
+            <Peeled loop for vectorization>
+            LOOP END
+
+            LOOP BEGIN at io.f90(1202,15) inlined into io.f90(1660,16)
+               remark #15300: LOOP WAS VECTORIZED
+            LOOP END
+
+            LOOP BEGIN at io.f90(1202,15) inlined into io.f90(1660,16)
+            <Alternate Alignment Vectorized Loop>
+            LOOP END
+
+            LOOP BEGIN at io.f90(1202,15) inlined into io.f90(1660,16)
+            <Remainder loop for vectorization>
+            LOOP END
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(1081,9):remark #34026: call to memcpy implemented as a call to optimized library version
+io.f90(1154,12):remark #34026: call to memcpy implemented as a call to optimized library version
+io.f90(1165,13):remark #34026: call to memcpy implemented as a call to optimized library version
+io.f90(1165,13):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (1, 0)
+io.f90(1202,15):remark #34026: call to memcpy implemented as a call to optimized library version
+io.f90(1011,18):remark #34051: REGISTER ALLOCATION : [iopdump_mp_wr2d_] io.f90:1011
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   22[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm7]
+        
+    Routine temporaries
+        Total         :     520
+            Global    :     143
+            Local     :     377
+        Regenerable   :      95
+        Spilled       :      42
+        
+    Routine stack
+        Variables     :   11944 bytes*
+            Reads     :       2 [3.70e+00 ~ 0.4%]
+            Writes    :      62 [2.93e+01 ~ 3.1%]
+        Spills        :     288 bytes*
+            Reads     :      69 [6.64e+01 ~ 7.0%]
+            Writes    :      55 [2.66e+01 ~ 2.8%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::PDUMP:WR2DHDF
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (IO::PDUMP:WR2DHDF) io.f90(1060,18)
+
+===========================================================================
+
+Begin optimization report for: IO::PDUMP:WR2DHDF_SEQ
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (IO::PDUMP:WR2DHDF_SEQ) io.f90(1130,18)
+
+===========================================================================
+
+Begin optimization report for: IO::PDUMP:WR2DHDF_BIN
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::PDUMP:WR2DHDF_BIN) [15] io.f90(1238,18)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at io.f90(1327,12)
+   remark #25045: Fused Loops: ( 1327 1328 )
+
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+
+   LOOP BEGIN at io.f90(1327,12)
+      remark #25045: Fused Loops: ( 1327 1328 )
+
+      remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+      remark #25438: unrolled without remainder by 2  
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+   LOOP END
+
+   LOOP BEGIN at io.f90(1328,12)
+      remark #25046: Loop lost in Fusion 
+   LOOP END
+LOOP END
+
+LOOP BEGIN at io.f90(1328,12)
+   remark #25046: Loop lost in Fusion 
+LOOP END
+
+LOOP BEGIN at io.f90(1343,9)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at io.f90(1343,9)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+LOOP BEGIN at io.f90(1345,9)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at io.f90(1345,9)
+      remark #25399: memcopy generated
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at io.f90(1345,9)
+         remark #15300: LOOP WAS VECTORIZED
+      LOOP END
+
+      LOOP BEGIN at io.f90(1345,9)
+      <Remainder loop for vectorization>
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at io.f90(1347,9)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at io.f90(1347,9)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+LOOP BEGIN at io.f90(1349,9)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at io.f90(1349,9)
+      remark #25399: memcopy generated
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at io.f90(1349,9)
+         remark #15300: LOOP WAS VECTORIZED
+      LOOP END
+
+      LOOP BEGIN at io.f90(1349,9)
+      <Remainder loop for vectorization>
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(1349,9):remark #34026: call to memcpy implemented as a call to optimized library version
+io.f90(1345,9):remark #34026: call to memcpy implemented as a call to optimized library version
+io.f90(1238,18):remark #34051: REGISTER ALLOCATION : [iopdump_mp_wr2dhdf_bin_] io.f90:1238
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   25[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm4 zmm8-zmm12]
+        
+    Routine temporaries
+        Total         :     369
+            Global    :      91
+            Local     :     278
+        Regenerable   :      75
+        Spilled       :      29
+        
+    Routine stack
+        Variables     :     632 bytes*
+            Reads     :       4 [3.00e+00 ~ 0.0%]
+            Writes    :      78 [4.45e+01 ~ 0.1%]
+        Spills        :     184 bytes*
+            Reads     :      62 [4.56e+01 ~ 0.1%]
+            Writes    :      35 [2.25e+01 ~ 0.1%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::PDUMP:WR2DHDF_BIN_SEQ
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::PDUMP:WR2DHDF_BIN_SEQ) [16] io.f90(1410,18)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at io.f90(1505,12)
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25045: Fused Loops: ( 1505 1506 )
+
+
+   LOOP BEGIN at io.f90(1505,12)
+      remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+      remark #25438: unrolled without remainder by 2  
+      remark #25045: Fused Loops: ( 1505 1506 )
+
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 2
+   LOOP END
+
+   LOOP BEGIN at io.f90(1506,12)
+      remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+      remark #25438: unrolled without remainder by 2  
+      remark #25046: Loop lost in Fusion 
+   LOOP END
+LOOP END
+
+LOOP BEGIN at io.f90(1506,12)
+   remark #15335: loop was not vectorized: vectorization possible but seems inefficient. Use vector always directive or -vec-threshold0 to override 
+   remark #25046: Loop lost in Fusion 
+LOOP END
+
+LOOP BEGIN at io.f90(1521,9)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at io.f90(1521,9)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+LOOP BEGIN at io.f90(1524,9)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at io.f90(1524,9)
+      remark #15300: LOOP WAS VECTORIZED
+   LOOP END
+LOOP END
+
+LOOP BEGIN at io.f90(1531,14)
+   remark #25399: memcopy generated
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+LOOP END
+
+LOOP BEGIN at io.f90(1533,14)
+   remark #25399: memcopy generated
+   remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+LOOP END
+
+LOOP BEGIN at io.f90(1543,9)
+   remark #15542: loop was not vectorized: inner loop was already vectorized
+
+   LOOP BEGIN at io.f90(1544,11)
+      remark #15542: loop was not vectorized: inner loop was already vectorized
+
+      LOOP BEGIN at io.f90(1547,15)
+         remark #25399: memcopy generated
+         remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+      LOOP END
+
+      LOOP BEGIN at io.f90(1547,15)
+         remark #15542: loop was not vectorized: inner loop was already vectorized
+
+         LOOP BEGIN at io.f90(1547,15)
+            remark #15300: LOOP WAS VECTORIZED
+         LOOP END
+
+         LOOP BEGIN at io.f90(1547,15)
+         <Remainder loop for vectorization>
+            remark #25436: completely unrolled by 2  
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at io.f90(1549,15)
+         remark #25399: memcopy generated
+         remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+      LOOP END
+
+      LOOP BEGIN at io.f90(1549,15)
+         remark #15306: loop was not vectorized: inner loop was transformed to memset or memcpy
+
+         LOOP BEGIN at io.f90(1549,15)
+            remark #25399: memcopy generated
+            remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at io.f90(1583,15)
+         remark #15542: loop was not vectorized: inner loop was already vectorized
+
+         LOOP BEGIN at io.f90(1583,15)
+            remark #25399: memcopy generated
+            remark #15542: loop was not vectorized: inner loop was already vectorized
+
+            LOOP BEGIN at io.f90(1583,15)
+               remark #15300: LOOP WAS VECTORIZED
+            LOOP END
+
+            LOOP BEGIN at io.f90(1583,15)
+            <Remainder loop for vectorization>
+            LOOP END
+         LOOP END
+      LOOP END
+
+      LOOP BEGIN at io.f90(1585,15)
+         remark #15542: loop was not vectorized: inner loop was already vectorized
+
+         LOOP BEGIN at io.f90(1585,15)
+            remark #25399: memcopy generated
+            remark #15542: loop was not vectorized: inner loop was already vectorized
+
+            LOOP BEGIN at io.f90(1585,15)
+               remark #15300: LOOP WAS VECTORIZED
+            LOOP END
+
+            LOOP BEGIN at io.f90(1585,15)
+            <Remainder loop for vectorization>
+            LOOP END
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+Fusion of IFs performed in iopdump_mp_wr2dhdf_bin_seq_ at line 1511
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(1533,14):remark #34026: call to memcpy implemented as a call to optimized library version
+io.f90(1549,15):remark #34026: call to memcpy implemented as a call to optimized library version
+io.f90(1549,15):remark #34000: call to memcpy implemented inline with loads and stores with proven source (alignment, offset): (1, 0), and destination (alignment, offset): (1, 0)
+io.f90(1585,15):remark #34026: call to memcpy implemented as a call to optimized library version
+io.f90(1583,15):remark #34026: call to memcpy implemented as a call to optimized library version
+io.f90(1547,15):remark #34026: call to memcpy implemented as a call to optimized library version
+io.f90(1531,14):remark #34026: call to memcpy implemented as a call to optimized library version
+io.f90(1410,18):remark #34051: REGISTER ALLOCATION : [iopdump_mp_wr2dhdf_bin_seq_] io.f90:1410
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   24[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm4 zmm8-zmm12]
+        
+    Routine temporaries
+        Total         :     429
+            Global    :     113
+            Local     :     316
+        Regenerable   :      96
+        Spilled       :      26
+        
+    Routine stack
+        Variables     :    4924 bytes*
+            Reads     :       6 [1.84e+01 ~ 0.0%]
+            Writes    :      83 [1.25e+02 ~ 0.3%]
+        Spills        :     168 bytes*
+            Reads     :      55 [1.19e+02 ~ 0.3%]
+            Writes    :      33 [8.31e+01 ~ 0.2%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: IO::RSDUMP
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (IO::RSDUMP) [17] io.f90(525,18)
+  -> (594,12) IO::WRRSFILE
+
+
+    Report from: Code generation optimizations [cg]
+
+io.f90(525,18):remark #34051: REGISTER ALLOCATION : [io_mp_rsdump_] io.f90:525
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   13[ rax rdx rcx rbp rsi rdi r8-r10 r12 zmm0-zmm2]
+        
+    Routine temporaries
+        Total         :      72
+            Global    :      20
+            Local     :      52
+        Regenerable   :      41
+        Spilled       :       2
+        
+    Routine stack
+        Variables     :     128 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       9 [4.50e+00 ~ 7.6%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
