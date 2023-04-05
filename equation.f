@@ -326,8 +326,8 @@ subroutine spre2(f)
     k_perp1=min(k_para1,k_perp1) 
 
     ! make thermal conductivity a constant to simplify things
-    k_para1=1.00* 3e1
-    k_perp1=1.00* 0
+    k_para1=1.00* 20
+    k_perp1=1.00* 0.0
 
     k_diff=k_para1-k_perp1
     dTx=DDX3(Ti)
