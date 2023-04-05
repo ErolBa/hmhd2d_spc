@@ -5,3 +5,6 @@
 build/*.f90
 build/*.f
 build/*.h
+build/hmhd2d
+.vscode
+__pycache__
