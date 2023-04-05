@@ -176,7 +176,10 @@ SED=$($(ARCH)_SED)
 .m4.f90:
 	m4 $*.m4 > $*.f90
 
+all:  getfiles hmhd2d
 
+getfiles:
+	$(shell cp -u ../*.f ../*.f90 ../*.h .)
 
 DEPT=hmhd2d.o comm.o globals.o ssub.o util.o stepping.o \
        equation.o nmlist.o io.o ident.o mp.o prob.o
@@ -264,19 +267,14 @@ clean :
 .PHONY: cleanall
 
 cleanall:
-	rm hmhd2d
-	rm hmhd2d.f90
-	rm ident.f90
-	rm ssub.f90
-	rm prob.f90
-	rm io.f90
-	rm stepping.f90
-	rm equation.f90
-	rm comm.f90
-	rm *.m4
-	rm *.o
-	rm *.mod
-
+	rm -f hmhd2d
+	rm -f *.f90
+	rm -f *.f
+	rm -f *.m4
+	rm -f *.o
+	rm -f *.mod
+	rm -f *.optrpt
+	rm -f *.h
 
 
    
