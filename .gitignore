@@ -1,0 +1,7 @@
+*.o
+*.mod
+*.m4
+*.optrpt
+build/*.f90
+build/*.f
+build/*.h
