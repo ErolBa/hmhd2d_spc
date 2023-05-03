@@ -9,7 +9,13 @@ import matplotlib.pyplot as plt
 
 plt.rcParams['figure.figsize'] = [7., 7]
 
-HMHDslab.plot_scalar(sys.argv[1], sys.argv[2], xlims=[-2.5, 2.5], ylims=[-np.pi, np.pi])
+num_args = len(sys.argv)
 
-plt.tight_layout()
+if(num_args<3):
+    raise ValueError("Not enough input arguments!")
+else:
+    for n in range(2, num_args):
+        HMHDslab.plot_scalar(sys.argv[n], sys.argv[1], ylims=[-np.pi, np.pi])
+        plt.tight_layout()
+
 plt.show(block=True)

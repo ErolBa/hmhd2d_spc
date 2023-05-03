@@ -267,12 +267,25 @@
       !$OMP DO
       ! Add Ey0
 
+      !! If there is need to measure different components of Ey
+      ! REAL(RTYPE) :: max, temp
+      ! max = 0
+      ! do k=3,nz-2
+      !       do i=3, nx-2
+      !             temp = ABS(eta * bs_curr_const * ddz(prei, i, k) )
+      !             if (temp > max) then
+      !                   max = temp
+      !             endif
+      !       end do
+      ! end do
+
+      ! write(*,*) "Max init (", iproc, ") ", MAXVAL(ABS(ey)), " ",NEW_LINE('a'), "Ey0", MAXVAL(ABS(Ey0)),  NEW_LINE('a'), "Jbs", max
       
 
       do k=3,nz-2
         do i=3, nx-2
           ey(i,k) = ey(i,k)+Ey0(k) 
-          ey(i,k) = ey(i,k) + bs_curr_const * ddz(prei, i, k)! add bootstrap current term here(Erol) ! using ddx(p,i,k)
+          ey(i,k) = ey(i,k) + eta * bs_curr_const * ddz(prei, i, k)! add bootstrap current term here(Erol) ! using ddx(p,i,k)
       !     bs_curr_const should be on the order ~ 1e-3, 1e-4
       !     if too large, HMHD crashes
           !     print*, "====> bs_curr_const = ", bs_curr_const
@@ -307,18 +320,19 @@
       a = 3.0_RTYPE*sqrt(3.0_RTYPE)/4.0_RTYPE
       do k=1,nz
         do i=1,nx
-	psii(i,k)=1.00*9.17646 - log(cosh(pi*z(k)))
+	psii(i,k)=1.00*-0.00744195*a + a/cosh(z(k))**2
           ! add perturbation
           psii(i,k)=psii(i,k)-(xl/pi2)*qpb*cos(pi2*x(i)/xl)*cos(pi*z(k)/zl)
           psi0(i,k)= zero
-	deni(i,k)=1.00*20*(z(k)+pi)/(2*pi) + 1.0
-          prei(i,k)= T0*deni(i,k)
+	deni(i,k)=1.00*2.0
+	prei(i,k)=1.00*1*(z(k)+pi)/(2*pi) + 0.1
           pei(i,k)= prei(i,k)
+      !     deni(i,k) = 1.0
           ! perturbed flow
           puxi(i,k)= qpc*(xl/zl)*sin(two*pi*x(i)/xl)*cos(2*pi*z(k)/zl)
           puyi(i,k)= zero
           puzi(i,k)= -qpc*cos(two*pi*x(i)/xl)*sin(2*pi*z(k)/zl)
-	byi(i,k)=1.00*sqrt(qpa**2 - 4*a**2*sinh(z(k))**2/cosh(z(k))**6)! - 4.0 * prei(i,k) )
+	byi(i,k)=1.00*sqrt(qpa**2 - 4*a**2*sinh(z(k))**2/cosh(z(k))**6 )!- 4.0 * prei(i,k) )
         end do
       end do
 
@@ -337,8 +351,8 @@
       a = 3.0_RTYPE*sqrt(3.0_RTYPE)/4.0_RTYPE
       do k=1,nz
         do i=1,nx
-	psiii(i,k)=1.00*9.17646 - log(cosh(pi*z(k)))
-	byii(i,k)=1.00*sqrt(qpa**2 - 4*a**2*sinh(z(k))**2/cosh(z(k))**6)! - 4.0 * prei(i,k) )
+	psiii(i,k)=1.00*-0.00744195*a + a/cosh(z(k))**2
+	byii(i,k)=1.00*sqrt(qpa**2 - 4*a**2*sinh(z(k))**2/cosh(z(k))**6) !- 4.0 * prei(i,k) )
         end do
       end do
 

@@ -144,7 +144,7 @@ subroutine firststep
 #if (TWOFLUID==1 && SPE==1 && ISOTHERMAL==0)
   call spe2(f) 
 #endif
-  call sden2(f)
+  ! call sden2(f) !! try not to evolve density - Erol
   call spsi2(f)
 #if TWO_AND_HALF==1 
   call sby2(f)
@@ -206,7 +206,7 @@ subroutine step
 #if (TWOFLUID==1 && SPE==1 && ISOTHERMAL==0)
     call spe2(f)
 #endif
-    call sden2(f)
+    ! call sden2(f)!! try not to evolve density - Erol
     call spsi2(f)
 #if TWO_AND_HALF==1 
     call sby2(f)
@@ -327,7 +327,7 @@ subroutine spre2(f)
     k_perp1=min(k_para1,k_perp1) 
 
     ! make thermal conductivity a constant to simplify things
-    k_para1=1.00* 20
+    k_para1=1.00* 0
     k_perp1=1.00* 0.0
 
     k_diff=k_para1-k_perp1

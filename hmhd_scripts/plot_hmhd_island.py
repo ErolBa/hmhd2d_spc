@@ -9,9 +9,14 @@ import matplotlib.pyplot as plt
 
 plt.rcParams['figure.figsize'] = [7., 7]
 
-HMHDslab.get_width_As_HMHD(sys.argv[1])
+num_args = len(sys.argv)
 
-#plt.ylim([np.pi-0.8, np.pi+0.8])
-plt.ylim([0, 2*np.pi])
+if(num_args<2):
+    raise ValueError("Not enough input arguments!")
+else:
+    for n in range(1, num_args):
+
+        HMHDslab.get_width_As_HMHD(sys.argv[n])
+        plt.ylim([0, 2*np.pi])
 
 plt.show(block=True)

@@ -10,9 +10,9 @@ MODULE globals
       INTEGER, PARAMETER :: IWORD=selected_int_kind(4)    ! at least 2 bytes
       INTEGER, PARAMETER :: ILWORD=selected_int_kind(8)   ! at least 4 bytes
 ! Resolutions
-
-      INTEGER, PARAMETER :: nx0=30, &  !d=26! no. of real grids in each node 
-                            nz0=38    !d=34
+! Resolution should be as small as possible, but if it's too small results will be strange and will crash the python analysis tools
+      INTEGER, PARAMETER :: nx0=26, &  !d=26! no. of real grids in each node 
+                            nz0=32    !d=32
 
       INTEGER, PARAMETER :: nx=nx0+4,  &  ! resolution in x in each node
                             nz=nz0+4      ! resolution in z in each node  
