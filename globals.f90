@@ -11,8 +11,7 @@ MODULE globals
       INTEGER, PARAMETER :: ILWORD=selected_int_kind(8)   ! at least 4 bytes
 ! Resolutions
 ! Resolution should be as small as possible, but if it's too small results will be strange and will crash the python analysis tools
-      INTEGER, PARAMETER :: nx0=26, &  !d=26! no. of real grids in each node 
-                            nz0=32    !d=32
+	INTEGER, PARAMETER :: nx0=50, nz0=40
 
       INTEGER, PARAMETER :: nx=nx0+4,  &  ! resolution in x in each node
                             nz=nz0+4      ! resolution in z in each node  
@@ -21,10 +20,9 @@ MODULE globals
       INTEGER, PARAMETER :: nxblock=1,   &    ! Number of blocks in x direction
                             nzblock=1         ! Number of blocks in z direction
 
+      ! The size of each block may be utilize for better data proximity
 
-      INTEGER, PARAMETER :: block_dim_x=3,  &  ! The size of each block 
-                            block_dim_z=3      ! This may be utilize for better
-                                               ! data proximity
+	INTEGER, PARAMETER :: block_dim_x=2, block_dim_z=3
 
       INTEGER, PARAMETER :: nxproc=nxblock*block_dim_x, &  ! no. procs in x
                             nzproc=nzblock*block_dim_z     ! no. procs in z
