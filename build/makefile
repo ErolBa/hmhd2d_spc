@@ -3,165 +3,21 @@ SHELL := /bin/bash
 
 #===== Architecture =====
 
-#ARCH=MACPPC
-#ARCH=MACINTEL
-#ARCH=MAC_GFORTRAN
-#ARCH=GFORTRAN
-#ARCH=GFORTRAN_HYBRID
-#ARCH=BFUSION_GFORTRAN
-#ARCH=BASSI
-#ARCH=FRANKLIN
-#ARCH=HOPPER_PGI
-#ARCH=HOPPER_CRAY
-#ARCH=HOPPER_CRAY_HYBRID
-#ARCH=HOPPER_PATHSCALE
-#ARCH=EDISON_CRAY
-#ARCH=EDISON_CRAY_HYBRID
-#ARCH=CORI_CRAY
-#ARCH=CORI_CRAY_HYBRID
 ARCH=INTEL
-#ARCH=INTEL_HYBRID
-#ARCH=CORI_INTEL_HYBRID
-#ARCH=PLEIADES_INTEL_HYBRID
+#ARCH=INTELJED
 
-#===== MACPOWERPC =====
-MACPPC_F90=h5pfc
-#MACPPC_F90=xlf90_r
-MACPPC_FFLAGS= -qthreaded -O5 -qsuffix=f=f90 -qnohot -qtune=auto -qarch=auto \
-	-qunroll=auto -qsmp=omp 
-#MACPPC_FFLAGS= -qthreaded -O5 -qtune=auto -qarch=auto -qunroll=auto
-#MACPPC_FFLAGS= -g -p 
-MACPPC_CPPFLAGS=-traditional -P -xassembler-with-cpp
-# Fix #pragma line
-MACPPC_SED = | sed -e s/\#pragma/!\#pragma/
-#===== MACINTEL =====
-MACINTEL_F90=h5pfc
-#MACINTEL_F90=ifort
-MACINTEL_FFLAGS=-O5 -align all -arch SSE2 -m32
-#MACINTEL_FFLAGS=-O3 -ftree-vectorizer-verbose=2 -march=core2 -msse3  
-#MACINTEL_FFLAGS=-O2  -ffast-math -march=core2 -msse3  
-MACINTEL_CPPFLAGS=-traditional -P -xassembler-with-cpp
-# Fix #pragma line
-MACINTEL_SED = | sed -e s/\#pragma/!\#pragma/
-#===== MAC_GFORTRAN =====
-MAC_GFORTRAN_F90=h5pfc
-#MAC_GFORTRAN_FFLAGS=-O3 -ftree-vectorizer-verbose=2 -march=core2 -msse3  
-MAC_GFORTRAN_FFLAGS=-O3 -fopenmp -ftree-vectorizer-verbose=2 -march=core2 -msse3  
-#MAC_GFORTRAN_FFLAGS=-O2  -ffast-math -march=core2 -msse3  
-MAC_GFORTRAN_CPPFLAGS=-traditional -P -xassembler-with-cpp
-# Fix #pragma line
-MAC_GFORTRAN_SED = | sed -e s/\#pragma/!\#pragma/
-#===== GFORTRAN =====
-GFORTRAN_F90=h5pfc
-# enable ffast-math compromises accurarcy. It may introduce noise in a 
-# direction that is supposed to have exact symmetry.
-#GFORTRAN_FFLAGS=-O3 -ffast-math -fopenmp -ftree-vectorizer-verbose=2   
-GFORTRAN_FFLAGS=-O3 -ffast-math -ftree-vectorize -fopt-info-vec-all
-
-GFORTRAN_CPPFLAGS=-traditional -P -xassembler-with-cpp
-# Fix #pragma line
-GFORTRAN_SED = | sed -e s/\#pragma/!\#pragma/
-#===== GFORTRAN_HYBRID =====
-GFORTRAN_HYBRID_F90=h5pfc
-GFORTRAN_HYBRID_FFLAGS=-O3 -ffast-math -fopenmp -ftree-vectorize \
-		       -fopt-info-vec-all 
-GFORTRAN_HYBRID_CPPFLAGS=-traditional -P -xassembler-with-cpp
-# Fix #pragma line
-GFORTRAN_HYBRID_SED = | sed -e s/\#pragma/!\#pragma/
-#===== BFUSION_GFORTRAN =====
-BFUSION_GFORTRAN_F90=h5pfc
-#BFUSION_GFORTRAN_FFLAGS=-O3 -ffast-math -fopenmp -ftree-vectorizer-verbose=2 -L$HDFLIB -I$HDFINC 
-BFUSION_GFORTRAN_FFLAGS=-O2 -ffast-math -ftree-vectorizer-verbose=2 -L$(HDFLIB) -I$(HDFINC) 
-BFUSION_GFORTRAN_CPPFLAGS=-traditional -P -xassembler-with-cpp
-# Fix #pragma line
-BFUSION_GFORTRAN_SED = | sed -e s/\#pragma/!\#pragma/
-#
-#===== FRANKLIN  =====
-FRANKLIN_F90=h5pfc
-#FRANKLIN_F90=ftn
-FRANKLIN_FFLAGS=-fastsse 
-FRANKLIN_CPPFLAGS=-traditional -P -xassembler-with-cpp
-FRANKLIN_SED=
-#===== Hopper PGI ======
-HOPPER_PGI_F90=h5pfc
-HOPPER_PGI_FFLAGS=-fastsse -mp -Mipa=fast,inline -Minfo=all -Mneginfo=all
-#HOPPER_PGI_FFLAGS=-fastsse -Mipa=fast,inline -Minfo=all -Mneginfo=all 
-HOPPER_PGI_CPPFLAGS=-traditional -P -xassembler-with-cpp
-HOPPER_PGI_SED=
-#===== Hopper PATHSCALE ======
-HOPPER_PATHSCALE_F90=h5pfc
-HOPPER_PATHSCALE_FFLAGS=-Ofast -LNO:simd_verbose=ON
-HOPPER_PATHSCALE_CPPFLAGS=-traditional -P -xassembler-with-cpp
-HOPPER_PATHSCALE_SED=
-#===== Hopper Cray ======
-HOPPER_CRAY_F90=ftn
-HOPPER_CRAY_FFLAGS=-O3 -hfp3 -rmd -xomp
-HOPPER_CRAY_CPPFLAGS=-traditional -P -xassembler-with-cpp
-HOPPER_CRAY_SED=
-#===== Hopper Cray Hybrid======
-HOPPER_CRAY_HYBRID_F90=ftn
-HOPPER_CRAY_HYBRID_FFLAGS=-O3 -hfp3 -rmd
-HOPPER_CRAY_HYBRID_CPPFLAGS=-traditional -P -xassembler-with-cpp
-HOPPER_CRAY_HYBRID_SED=
-#===== Edison Cray ======
-EDISON_CRAY_F90=ftn
-EDISON_CRAY_FFLAGS=-O3 -hfp3 -rmd -xomp -L$(CRAY_LD_LIBRARY_PATH)
-EDISON_CRAY_CPPFLAGS=-traditional -P -xassembler-with-cpp
-EDISON_CRAY_SED=
-#===== Edison Cray Hybrid======
-EDISON_CRAY_HYBRID_F90=ftn
-EDISON_CRAY_HYBRID_FFLAGS=-O3 -hfp3 -rmd -L$(CRAY_LD_LIBRARY_PATH)
-EDISON_CRAY_HYBRID_CPPFLAGS=-traditional -P -xassembler-with-cpp
-EDISON_CRAY_HYBRID_SED=
-#===== Cori Cray ======
-CORI_CRAY_F90=ftn
-CORI_CRAY_FFLAGS=-O3 -hfp3 -rmd -L$(CRAY_LD_LIBRARY_PATH)
-CORI_CRAY_CPPFLAGS=-traditional -P -xassembler-with-cpp
-CORI_CRAY_SED=
-#===== Cori Cray Hybrid======
-CORI_CRAY_HYBRID_F90=ftn
-CORI_CRAY_HYBRID_FFLAGS=-O3 -hfp3 -h omp -rmd -L$(CRAY_LD_LIBRARY_PATH)
-CORI_CRAY_HYBRID_CPPFLAGS=-traditional -P -xassembler-with-cpp
-CORI_CRAY_HYBRID_SED=
-#===== BASSI =====
-# One must set environmental variables HDF5_FC and HDF5_FLINKER as
-# xlf90_r
-
-BASSI_F90=h5pfc
-#BASSI_F90=xlf90_r
-BASSI_FFLAGS=-O3 -qsuffix=f=f90 -qnohot -qtune=auto -qarch=auto \
-        -qunroll=auto -qmaxmem=-1 -qalign=4k
-#BASSI_FFLAGS= -qthreaded -O3 -qtune=auto -qarch=auto -qunroll=auto
-#BASSI_FFLAGS= -g -p -qsmp=omp
-BASSI_CPPFLAGS= -traditional -P
-BASSI_SED=
 #===== INTEL =====
 INTEL_F90=h5pfc
 INTEL_FFLAGS=-O3 -align all -qopt-report -unroll-aggressive -qopt-prefetch  
 INTEL_CPPFLAGS=-traditional -P -xassembler-with-cpp
 INTEL_SED = | sed -e s/\#pragma/!\#pragma/
-#===== INTEL_HYBRID =====
-INTEL_HYBRID_F90=h5pfc
-INTEL_HYBRID_FFLAGS=-O3 -align all -qopt-report -unroll-aggressive -qopt-prefetch -qopenmp 
-INTEL_HYBRID_CPPFLAGS=-traditional -P -xassembler-with-cpp
-INTEL_HYBRID_SED = | sed -e s/\#pragma/!\#pragma/
-#===== CORI_INTEL_HYBRID =====
-CORI_INTEL_HYBRID_F90=ftn
-CORI_INTEL_HYBRID_FFLAGS=-O3 -align array64byte -qopt-report=5 -qopenmp -dynamic
-#CORI_INTEL_HYBRID_FFLAGS=-O3 -align array64byte -qopt-report=5 -qopenmp -mkl 
-CORI_INTEL_HYBRID_CPPFLAGS=-traditional -P -xassembler-with-cpp
-CORI_INTEL_HYBRID_SED = | sed -e s/\#pragma/!\#pragma/
-#==== PLEIADES_INTEL_HYBRID ====
-PLEIADES_INTEL_HYBRID_F90=h5pfc
-PLEIADES_INTEL_HYBRID_FFLAGS=-O3 -ipo -axCORE-AVX2 -xSSE4.2 -qopenmp
-PLEIADES_INTEL_HYBRID_CPPFLAGS=-traditional -P -xassembler-with-cpp
-PLEIADES_INTEL_HYBRID_SED = | sed -e s/\#pragma/!\#pragma/
-
-
+#===== INTELJED =====
+INTELJED_F90=mpiifort
+INTELJED_FFLAGS=-O3 -unroll-aggressive -I$(HDF5_ROOT)/include -L$(HDF5_ROOT)/lib -lhdf5_fortran -lhdf5
+INTELJED_CPPFLAGS=-traditional -P -xassembler-with-cpp
+INTELJED_SED = | sed -e s/\#pragma/!\#pragma/
 
 #=======================================================
-
-
 F90=$($(ARCH)_F90)
 FFLAGS=$($(ARCH)_FFLAGS)
 CPPFLAGS=$($(ARCH)_CPPFLAGS)
