@@ -263,24 +263,33 @@
       subroutine fin_e
       USE comm
       IMPLICIT NONE
-      INTEGER :: i, k
+      INTEGER :: i, k, ip
       !$OMP DO
       ! Add Ey0
-
-      !! If there is need to measure different components of Ey
-      ! REAL(RTYPE) :: max, temp
-      ! max = 0
-      ! do k=3,nz-2
-      !       do i=3, nx-2
-      !             temp = ABS(eta * bs_curr_const * ddz(prei, i, k) )
-      !             if (temp > max) then
-      !                   max = temp
-      !             endif
-      !       end do
-      ! end do
-
-      ! write(*,*) "Max init (", iproc, ") ", MAXVAL(ABS(ey)), " ",NEW_LINE('a'), "Ey0", MAXVAL(ABS(Ey0)),  NEW_LINE('a'), "Jbs", max
       
+      ! calc misc field, which is essentially E_bs
+      do k=3,nz-2
+            do i=3, nx-2
+                  misc(i,k) =  bs_curr_const * ddz(prei, i, k) ! no eta, so misc includes jbs
+            end do
+      end do
+
+
+
+      ! if(iproc.eq.0) then
+      ! ! If there is need to measure different components of Ey
+      !       do k=3,nz-2
+      !             do i=3, nx-2
+      !                   misc(i,k) = eta * bs_curr_const * ddz(prei, i, k)
+      !             end do
+      !       end do
+
+      !       ! write(*,*) "Max init (", iproc, ") ", MAXVAL(ABS(ey)), " ",NEW_LINE('a'), "Ey0", MAXVAL(ABS(Ey0)),  NEW_LINE('a'), "Jbs", max
+            
+      !       write(*,*) "Ey0 ", NEW_LINE('a'),Ey0
+      !       ! write(*,*) "eta*J_bs ", NEW_LINE('a'),misc
+      
+      ! endif
 
       do k=3,nz-2
         do i=3, nx-2
@@ -288,7 +297,6 @@
           ey(i,k) = ey(i,k) + eta * bs_curr_const * ddz(prei, i, k)! add bootstrap current term here(Erol) ! using ddx(p,i,k)
       !     bs_curr_const should be on the order ~ 1e-3, 1e-4
       !     if too large, HMHD crashes
-          !     print*, "====> bs_curr_const = ", bs_curr_const
         end do
       end do
       !$OMP END DO
@@ -325,18 +333,31 @@
           psii(i,k)=psii(i,k)-(xl/pi2)*qpb*cos(pi2*x(i)/xl)*cos(pi*z(k)/zl)
           psi0(i,k)= zero
 	deni(i,k)=1.00*2.0
-	prei(i,k)=1.00*1*(z(k)+pi)/(2*pi) + 0.1
+	prei(i,k)=1.00*3.0*(z(k)+pi)/(2*pi) + 0.1
           pei(i,k)= prei(i,k)
       !     deni(i,k) = 1.0
           ! perturbed flow
           puxi(i,k)= qpc*(xl/zl)*sin(two*pi*x(i)/xl)*cos(2*pi*z(k)/zl)
           puyi(i,k)= zero
           puzi(i,k)= -qpc*cos(two*pi*x(i)/xl)*sin(2*pi*z(k)/zl)
-	byi(i,k)=1.00*sqrt(qpa**2 - 4*a**2*sinh(z(k))**2/cosh(z(k))**6 )!- 4.0 * prei(i,k) )
+	! byi(i,k)=1.00*sqrt(qpa**2 - 4*a**2*sinh(z(k))**2/cosh(z(k))**6 )!- 4.0 * prei(i,k) )
         end do
       end do
 
+      do k=1,nz
+            do i=1,nx
+                  byi(i,k)=1.00*sqrt(qpa**2 - (ddz(psii, i, k))**2 - (ddx(psii, i, k))**2 )!- 4.0 * prei(i,k) )
+            end do
+      end do
+
       call restart
+
+      ! Calculate beta
+      ! if(iproc.eq.0) then
+      !       write(*,*) "BETAS (",iproc,') '
+      ! write(*,*) (2*MAXVAL(prei)) / qpa**2,","
+
+      ! betatotal SUM()
 
       end subroutine initialize
 !########################################################################
@@ -353,13 +374,15 @@
         do i=1,nx
 	psiii(i,k)=1.00*-0.00744195*a + a/cosh(z(k))**2
 	byii(i,k)=1.00*sqrt(qpa**2 - 4*a**2*sinh(z(k))**2/cosh(z(k))**6) !- 4.0 * prei(i,k) )
+      
         end do
       end do
 
      
       do k=3, nz-2
-        Ey0(k) = d2dz(psiii,3,k)*eta
-        Ex0(k) = ddz(byii,3,k)*eta
+        Ey0(k) = d2dz(psii,3,k)*eta
+        Ex0(k) = ddz(byi,3,k)*eta 
+        Ex0(k) = 0.0 ! set to zero to simplify - Erol
       end do
       return
       end subroutine restart

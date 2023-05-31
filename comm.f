@@ -173,7 +173,9 @@ USE globals
 
 ! ****** Friction  profile ********************
      
-    fric_prof 
+    fric_prof, &
+    
+    misc
   
 ! ==================================================== 
   
@@ -353,7 +355,8 @@ CONTAINS
     allocate(divfy(nx, nz))
     allocate(divfz(nx, nz)) 
     allocate(dif4_prof(nx, nz))   
-    allocate(fric_prof(nx, nz)) 
+    allocate(fric_prof(nx, nz))
+    allocate(misc(nx, nz)) 
     return
   end subroutine allocate_arrays  
 ! ==========================================================
@@ -405,7 +408,9 @@ CONTAINS
                ! ****** Hyper-diffusion profile ********************
                dif4_prof, & 
                ! ****** Friction  profile ********************
-               fric_prof  &
+               fric_prof,  &
+
+               misc &
               )  
     return
   end subroutine deallocate_arrays  

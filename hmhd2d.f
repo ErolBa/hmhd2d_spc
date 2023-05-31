@@ -228,7 +228,7 @@
 ! ****** Create file names based on RUNID.
 !
       lrid=lenstr(runid)
-      if (lrid.le.0.or.lrid.gt.9) go to 150
+      if (lrid.le.0.or.lrid.gt.20) go to 150
       if (.not.letter(runid(1:1))) go to 150
       do 100 i=1,lrid
         if (.not.alpha(runid(i:i))) go to 150

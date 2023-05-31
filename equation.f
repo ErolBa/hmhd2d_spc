@@ -207,6 +207,7 @@ subroutine step
     call spe2(f)
 #endif
     ! call sden2(f)!! try not to evolve density - Erol
+    call check_dens(f)!! Check if density is strange, if yes ABORT
     call spsi2(f)
 #if TWO_AND_HALF==1 
     call sby2(f)
@@ -218,6 +219,45 @@ subroutine step
   return
 end subroutine step
 	!#######################################################################
+subroutine check_dens(f)
+  IMPLICIT NONE
+  INTEGER :: f
+  INTEGER :: i, k
+
+  !$OMP DO 
+  do k=1,nz
+    do i=1,nx
+      fx(i,k)=-vx(i,k)*deni(i,k)
+      fz(i,k)=-vz(i,k)*deni(i,k)
+    end do
+    end do
+    !$OMP END DO
+  
+    !$OMP DO 
+    do k=3, nz-2
+    do i=3, nx-2
+      divf(i,k)=DDX(fx)+DDZ(fz)
+    end do
+    end do
+    !$OMP END DO      
+
+  !$OMP DO 
+  do k=3,nz-2
+  do i=3,nx-2
+    if (abs(divf(i,k)).gt.1e10) then
+      ifabort=.true.
+      ! ifabort=.false. ! Erol, try this modification - doesn't work
+      print*, "NEGATIVE DENSITY: ABORTING!"
+      print*, 'x=',x(i),'  z=',z(k),'  den=',deni(i,k)
+      return
+    end if
+  end do
+  end do
+  !$OMP END DO
+
+  return
+end subroutine check_dens
+
 subroutine sden2(f)
   IMPLICIT NONE
   INTEGER :: f

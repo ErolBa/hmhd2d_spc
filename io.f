@@ -60,9 +60,9 @@
       lf=lenstr(rsifile)
       write (fname,'(a,a,i5.5)') rsifile(1:lf),'.',iproc
       fname1=rsdir(1:lenstr(rsdir))//fname
-
-!
+      
       id=200+iproc
+      ! open(unit=id,status='old',file=fname1,form='unformatted',iostat=ierr)
       open(unit=id,status='old',file=fname1,form='unformatted',iostat=ierr)
 
       if (ierr.ne.0) then
@@ -70,6 +70,7 @@
           write (*,*)
           write (*,*) 'RSDIR may not exist. Try currernt directory instead.'
         end if
+        
         open(unit=id,status='old',file=fname,form='unformatted',iostat=ierr)
       end if  
 
@@ -646,6 +647,8 @@
       call wr2d (ey,'ey')
 !
       call wr2d (ez,'ez')
+
+      call wr2d (misc, 'misc')
 ! div v
       if (has(nplist,plotlist,'divv').or.  &
           has(nbin2,bin2,'divv').or.   &
