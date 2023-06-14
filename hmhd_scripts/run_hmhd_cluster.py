@@ -23,6 +23,7 @@ HMHDslab.set_inputfile_var('Tearing', "tpltxint", inputs.tpltxint)
 HMHDslab.set_inputfile_var('Tearing', "xl", inputs.xl)
 HMHDslab.set_inputfile_var('Tearing', "dt", inputs.dt) # d is 2e-3
 HMHDslab.set_inputfile_var('Tearing', "eta", inputs.eta)
+HMHDslab.set_inputfile_var('Tearing', "visc", inputs.visc)
 HMHDslab.set_inputfile_var('Tearing', "bs_curr_const", inputs.bs_curr_const)
 
 # lock file so only one code changes files and runs make at the time

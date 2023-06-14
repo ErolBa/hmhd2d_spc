@@ -1,3 +1,9 @@
+### hmhd2d_spc
+
+This is a clone of original HMHD2D code (written by Yi-Min Huang), with some minor changes and addition of bootstrap-current effects. To compile, enter the build directory and run make, the executable will be in the same folder.
+
+# To run on SPC computers, load module "hdf5/1.10.4-intel19.1"
+
 # use RCS
    @ list
        generate "files" which contains a list of files

@@ -647,7 +647,7 @@
       call wr2d (ey,'ey')
 !
       call wr2d (ez,'ez')
-
+      
       call wr2d (misc, 'misc')
 ! div v
       if (has(nplist,plotlist,'divv').or.  &
