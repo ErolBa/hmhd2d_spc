@@ -1,59 +1,30 @@
-### hmhd2d_spc
+# hmhd2d_spc
 
 This is a clone of original HMHD2D code (written by Yi-Min Huang), with some minor changes and addition of bootstrap-current effects. To compile, enter the build directory and run make, the executable will be in the same folder.
 
-# To run on SPC computers, load module "hdf5/1.10.4-intel19.1"
+To run on SPC computers, load module "hdf5/1.10.4-intel19.1"
 
-# use RCS
-   @ list
-       generate "files" which contains a list of files
-   @ ci -f -lx.x -m'message' files `cat files`
-       -f force revision
-       -lx.x version number
-        l means lock
-   @ or use
-     ci -f -ux.x -m'message' files `cat files`
-     u means unlock
-   @ or
-     ci -fx.x -m'message' files `cat files`
-     the original files disappear after check-in
 
-   To check out
-   @ co -lx.x files
-   @ co -lx.x `cat files`
+## Notices
 
-   To undo a checkin by mistake or erase a version (-o, o=obsolete)
-   first copy the files somewhere so you won't lose them. Then
-   @ rcs -ox.x files `cat files`
-   If it is locked, unlock it first:
-   @ rcs -ux.x files `cat files`
+If the code behaves strangely, lowering the optimization level may be one thing to try.
 
-Notice:
+The user should provide a prob.f module, which defines the mesh, initial and boundary conditions. There are some existing modules for different physical systems in the package. One can copy the file (with filenames prof*.f) to prob.f
 
-# If the code behaves strangely, lowering the optimization level may be
-  one thing to try.
+When use gfortran, the numbers in the input file should go like 1.D0, 1., 0.01, etc.  There must be a number following D. For example, 1.D  will confuse the code.
 
-# The user should provide a prob.f module, which defines the mesh, initial
-  and boundary conditions. There are some existing modules for different
-  physical systems in the package. One can copy the file (with filenames
-  prof*.f) to prob.f
- 
-# When use gfortran, the numbers in the input file should go like 1.D0, 
-  1., 0.01, etc.  There must be a number following D. For example, 1.D 
-  will confuse the code.
-
-# Parallel HDF5 can be slower than sequential one. Sequential output may 
+Parallel HDF5 can be slower than sequential one. Sequential output may 
   actually be prefered when memory is not a problem).  
   It is always a good practice to run a few small/short test runs for I/O 
   speed before throwing in big runs. 
   However, the problem of slow parallel output when binning data is largely
   solved in version 2.2
 
-# To enable hybrid MPI & OpenMP on NERSC, need to set 
+To enable hybrid MPI & OpenMP on NERSC, need to set 
   export MPICH_MAX_THREAD_SAFETY=multiple
   before executing the code  
 
-# Boundary condition calls of the same variable in different directions
+Boundary condition calls of the same variable in different directions
   must be in the same OMP SECTION. Otherwise synchronization is NOT
   guaranteed.
 
@@ -61,7 +32,8 @@ To Do:
 -- Add diagnostics for conservation laws checking
 
 --------------------------------------------------------------------------
-Log:
+## Log
+
 Version 3.21 - Fixed errors in bcz options 'ext4' and 'ext4_zero'.
                (Y.-M. Huang 11/19/2021)
              - add a boundary condition  option "ext2_sym'.
