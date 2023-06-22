@@ -328,25 +328,25 @@ REAL(RTYPE) :: a
 a = 3.0_RTYPE*sqrt(3.0_RTYPE)/4.0_RTYPE
 do k=1,nz
   do i=1,nx
-psii(i,k)=1.00*-0.00744195*a + a/cosh(z(k))**2
+	psii(i,k)=1.00*-0.00744195*a + a/cosh(z(k))**2
     ! add perturbation
     psii(i,k)=psii(i,k)-(xl/pi2)*qpb*cos(pi2*x(i)/xl)*cos(pi*z(k)/zl)
     psi0(i,k)= zero
-deni(i,k)=1.00*2.0
-prei(i,k)=1.00*3.0*(z(k)+pi)/(2*pi) + 0.1
+	deni(i,k)=1.00*1.0
+	prei(i,k)=1.00*0.0
     pei(i,k)= prei(i,k)
 !     deni(i,k) = 1.0
     ! perturbed flow
     puxi(i,k)= qpc*(xl/zl)*sin(two*pi*x(i)/xl)*cos(2*pi*z(k)/zl)
     puyi(i,k)= zero
     puzi(i,k)= -qpc*cos(two*pi*x(i)/xl)*sin(2*pi*z(k)/zl)
-! byi(i,k)=1.00*sqrt(qpa**2 - 4*a**2*sinh(z(k))**2/cosh(z(k))**6 )!- 4.0 * prei(i,k) )
+! byi(i,k)=1.00*sqrt( qpa**2 - 4*a**2*sinh(z(k))**2/cosh(z(k))**6 )- 4.0 * prei(i,k) )
   end do
 end do
 
 do k=1,nz
       do i=1,nx
-            byi(i,k)=1.00*sqrt(qpa**2 - (ddz(psii, i, k))**2 - (ddx(psii, i, k))**2 )!- 4.0 * prei(i,k) )
+	byi(i,k)=1.00*sqrt(qpa**2 - 4*a**2*sinh(z(k))**2/cosh(z(k))**6 - 4.0 * prei(i,k) )
       end do
 end do
 
@@ -372,8 +372,8 @@ REAL(RTYPE) :: a
 a = 3.0_RTYPE*sqrt(3.0_RTYPE)/4.0_RTYPE
 do k=1,nz
   do i=1,nx
-psiii(i,k)=1.00*-0.00744195*a + a/cosh(z(k))**2
-byii(i,k)=1.00*sqrt(qpa**2 - 4*a**2*sinh(z(k))**2/cosh(z(k))**6) !- 4.0 * prei(i,k) )
+	psiii(i,k)=1.00*-0.00744195*a + a/cosh(z(k))**2
+	byii(i,k)=1.00*sqrt(qpa**2 - 4*a**2*sinh(z(k))**2/cosh(z(k))**6 - 4.0 * prei(i,k) )
 
   end do
 end do

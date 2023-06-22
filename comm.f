@@ -175,7 +175,8 @@ USE globals
      
     fric_prof, &
     
-    misc
+    misc, &
+    alfspd
   
 ! ==================================================== 
   
@@ -356,7 +357,8 @@ CONTAINS
     allocate(divfz(nx, nz)) 
     allocate(dif4_prof(nx, nz))   
     allocate(fric_prof(nx, nz))
-    allocate(misc(nx, nz)) 
+    allocate(misc(nx, nz))
+    allocate(alfspd(nx, nz)) 
     return
   end subroutine allocate_arrays  
 ! ==========================================================
@@ -410,7 +412,9 @@ CONTAINS
                ! ****** Friction  profile ********************
                fric_prof,  &
 
-               misc &
+               misc, &
+
+               alfspd &
               )  
     return
   end subroutine deallocate_arrays  

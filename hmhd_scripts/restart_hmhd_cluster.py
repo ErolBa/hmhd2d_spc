@@ -11,6 +11,7 @@ from filelock import FileLock
 
 new_tmax = int(sys.argv[1])
 rsifile = sys.argv[2]
+root_name = os.getcwd().split('/')[-1]
 
 if(rsifile=="latest"):
     rsfiles = glob("rsTearing*.00000")
@@ -44,7 +45,7 @@ with lock:
             #SBATCH --cpus-per-task 1
             #SBATCH --mem 8G
             #SBATCH --time 01:00:00
-            #SBATCH --job-name="hmhd2d_rst {inputs.root_fname}"
+            #SBATCH --job-name="hmhd2d_rst {root_name}"
             export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
             srun /home/balkovic/codes/hmhd2d_spc/build/hmhd2d Tearing"""), 
             file=f)

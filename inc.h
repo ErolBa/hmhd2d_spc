@@ -239,5 +239,5 @@
 
 #define PROBVARS 0
 
-
-
+/* Whether to turn on adaptive time step (based on Alfven speed)*/
+#define ADAPTIVEDT 0
