@@ -29,7 +29,7 @@ json_fname = glob("inputs*")[0]
 with open(json_fname, 'r') as fh:
     temp_dict = json.load(fh)
 inputs.update(temp_dict)
-print('cpus',inputs.num_cpus)
+
 # lock file so only one code changes files and runs make at the time
 lock = FileLock("/home/balkovic/codes/hmhd2d_spc/build/lock.lock")
 with lock:
