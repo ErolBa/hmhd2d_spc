@@ -155,9 +155,9 @@ subroutine firststep
   !$OMP SINGLE
   time=time+dt
   !$OMP END SINGLE
-  #elif ADAPTIVEDT==1
+#elif ADAPTIVEDT==1
   !$OMP SINGLE
-  dx = x(5)-x(4)
+  ! dx = x(5)-x(4)
   do k=2,nz-1
     do i=2,nx-1
       alfspd(i,k)=sqrt((bxi(i,k)**2+byi(i,k)**2+bzi(i,k)**2)/deni(i,k))
@@ -192,7 +192,7 @@ subroutine step
     !$OMP END SINGLE
 #elif ADAPTIVEDT==1
     !$OMP SINGLE
-    dx = x(5)-x(4)
+    ! dx = x(5)-x(4)
     do k=2,nz-1
       do i=2,nx-1
         alfspd(i,k)=sqrt((bxi(i,k)**2+byi(i,k)**2+bzi(i,k)**2)/deni(i,k))
